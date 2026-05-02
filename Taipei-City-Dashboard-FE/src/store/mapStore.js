@@ -58,6 +58,44 @@ import {
 	mrtLineColor,
 } from "../assets/utilityFunctions/getThematicColor.js";
 
+const CITY_PROPERTY_VALUES = {
+	taipei: "臺北市",
+	newtaipei: "新北市",
+	taoyuan: "桃園市",
+};
+const ANIMATED_HAZARD_LAYER_IDS = new Set([
+	"wee_hazard_water-fill-extrusion-metrotaipei",
+	"wee_hazard_water_tp-fill-extrusion-taipei",
+]);
+const ANIMATED_HAZARD_FILTER_CLASS = [
+	["6h150r", "6h250r", "6h350r"],
+	["12h200r", "12h300r", "12h400r"],
+	["24h200r", "24h350r", "24h500r", "24h650r"],
+];
+
+function combineMapFilters(...filters) {
+	const validFilters = filters.filter(Boolean);
+	if (validFilters.length === 0) return null;
+	if (validFilters.length === 1) return validFilters[0];
+	return ["all", ...validFilters];
+}
+
+function getGeoJsonCityFilter(map_config, data) {
+	const cityName = CITY_PROPERTY_VALUES[map_config.city];
+	if (!cityName || !data?.features?.length) return null;
+
+	const hasMatchingCity = data.features.some(
+		(feature) => feature?.properties?.city === cityName,
+	);
+
+	if (!hasMatchingCity) return null;
+	return ["==", ["get", "city"], cityName];
+}
+
+function getInitialHazardFilter() {
+	return ["in", "hazard_class", ...ANIMATED_HAZARD_FILTER_CLASS[0]];
+}
+
 export const useMapStore = defineStore("map", {
 	state: () => ({
 		// Array of layer IDs that are in the map
@@ -463,6 +501,8 @@ export const useMapStore = defineStore("map", {
 		},
 		// 3-1. Add a local geojson as a source in mapbox
 		addGeojsonSource(map_config, data) {
+			map_config.cityFilter = getGeoJsonCityFilter(map_config, data);
+
 			if (
 				!["voronoi", "isoline"].includes(map_config.type) &&
 				map_config.type !== "symbol-3d"
@@ -639,14 +679,9 @@ export const useMapStore = defineStore("map", {
 				};
 			}
 			this.loadingLayers.push("rendering");
-			const filterClass = [
-				["6h150r", "6h250r", "6h350r"],
-				["12h200r", "12h300r", "12h400r"],
-				["24h200r", "24h350r", "24h500r", "24h650r"],
-			];
 
 			// 初始 filter 設定為第一組 (6 小時降雨)
-			const initialFilter = ["in", "hazard_class", ...filterClass[0]];
+			const initialFilter = getInitialHazardFilter();
 			const config = {
 				id: map_config.layerId,
 				type: map_config.type,
@@ -663,21 +698,14 @@ export const useMapStore = defineStore("map", {
 				},
 				source: `${map_config.layerId}-source`,
 			};
-			if (
-				map_config.layerId ===
-					"wee_hazard_water-fill-extrusion-metrotaipei" ||
-				map_config.layerId ===
-					"wee_hazard_water_tp-fill-extrusion-taipei"
-			) {
-				config.filter = initialFilter;
+			const cityFilter = map_config.cityFilter || null;
+			if (ANIMATED_HAZARD_LAYER_IDS.has(map_config.layerId)) {
+				config.filter = combineMapFilters(initialFilter, cityFilter);
+			} else if (cityFilter) {
+				config.filter = cityFilter;
 			}
 			this.map.addLayer(config);
-			if (
-				map_config.layerId ===
-					"wee_hazard_water-fill-extrusion-metrotaipei" ||
-				map_config.layerId ===
-					"wee_hazard_water_tp-fill-extrusion-taipei"
-			)
+			if (ANIMATED_HAZARD_LAYER_IDS.has(map_config.layerId))
 				this.animateFilter(map_config.layerId);
 			this.currentLayers.push(map_config.layerId);
 			this.mapConfigs[map_config.layerId] = map_config;
@@ -1812,24 +1840,13 @@ export const useMapStore = defineStore("map", {
 				this.currentVisibleLayers.push(mapLayerId);
 				this.renderDeckGLLayer();
 			} else {
-				if (
-					mapLayerId ===
-						"wee_hazard_water-fill-extrusion-metrotaipei" ||
-					mapLayerId === "wee_hazard_water_tp-fill-extrusion-taipei"
-				) {
-					const filterClass = [
-						["6h150r", "6h250r", "6h350r"],
-						["12h200r", "12h300r", "12h400r"],
-						["24h200r", "24h350r", "24h500r", "24h650r"],
-					];
-
-					// 初始 filter 設定為第一組 (6 小時降雨)
-					const initialFilter = [
-						"in",
-						"hazard_class",
-						...filterClass[0],
-					];
-					this.map.setFilter(mapLayerId, initialFilter);
+				const cityFilter =
+					this.mapConfigs[mapLayerId]?.cityFilter || null;
+				if (ANIMATED_HAZARD_LAYER_IDS.has(mapLayerId)) {
+					this.map.setFilter(
+						mapLayerId,
+						combineMapFilters(getInitialHazardFilter(), cityFilter),
+					);
 					this.map.setLayoutProperty(
 						mapLayerId,
 						"visibility",
@@ -1837,6 +1854,9 @@ export const useMapStore = defineStore("map", {
 					);
 					this.animateFilter(mapLayerId);
 				} else {
+					if (cityFilter) {
+						this.map.setFilter(mapLayerId, cityFilter);
+					}
 					this.map.setLayoutProperty(
 						mapLayerId,
 						"visibility",
@@ -1857,7 +1877,10 @@ export const useMapStore = defineStore("map", {
 					this.deckGlLayer[mapLayerId].config.visible = false;
 					this.renderDeckGLLayer();
 				} else if (this.map.getLayer(mapLayerId)) {
-					this.map.setFilter(mapLayerId, null);
+					this.map.setFilter(
+						mapLayerId,
+						this.mapConfigs[mapLayerId]?.cityFilter || null,
+					);
 					this.map.setLayoutProperty(
 						mapLayerId,
 						"visibility",
@@ -2322,6 +2345,8 @@ export const useMapStore = defineStore("map", {
 			}
 			map_configs.map((map_config) => {
 				let mapLayerId = `${map_config.index}-${map_config.type}-${map_config.city}`;
+				const cityFilter =
+					this.mapConfigs[mapLayerId]?.cityFilter || null;
 				if (map_config && map_config.type === "arc") {
 					this.deckGlLayer[mapLayerId].config.data = this.deckGlLayer[
 						mapLayerId
@@ -2360,27 +2385,39 @@ export const useMapStore = defineStore("map", {
 					xParam &&
 					yParam
 				) {
-					this.map.setFilter(mapLayerId, [
+					const paramFilter = [
 						"all",
 						["==", ["get", map_filter.byParam.xParam], xParam],
 						["==", ["get", map_filter.byParam.yParam], yParam],
-					]);
+					];
+					this.map.setFilter(
+						mapLayerId,
+						combineMapFilters(cityFilter, paramFilter),
+					);
 				}
 				// If only y exists, filter by y
 				else if (map_filter.byParam.yParam && yParam) {
-					this.map.setFilter(mapLayerId, [
+					const paramFilter = [
 						"==",
 						["get", map_filter.byParam.yParam],
 						yParam,
-					]);
+					];
+					this.map.setFilter(
+						mapLayerId,
+						combineMapFilters(cityFilter, paramFilter),
+					);
 				}
 				// default to filter by x
 				else if (map_filter.byParam.xParam && xParam) {
-					this.map.setFilter(mapLayerId, [
+					const paramFilter = [
 						"==",
 						["get", map_filter.byParam.xParam],
 						xParam,
-					]);
+					];
+					this.map.setFilter(
+						mapLayerId,
+						combineMapFilters(cityFilter, paramFilter),
+					);
 				}
 			});
 		},
@@ -2423,7 +2460,10 @@ export const useMapStore = defineStore("map", {
 					this.renderDeckGLLayer();
 					return;
 				}
-				this.map.setFilter(mapLayerId, null);
+				this.map.setFilter(
+					mapLayerId,
+					this.mapConfigs[mapLayerId]?.cityFilter || null,
+				);
 			});
 		},
 		// 4. Remove any layer filters on a map layer.

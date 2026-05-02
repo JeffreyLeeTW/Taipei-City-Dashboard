@@ -15,6 +15,7 @@ import cctv from "../assets/map/cctv.png";
 import live from "../assets/map/live.png";
 
 const props = defineProps([
+	"activeCity",
 	"chart_config",
 	"series",
 	"map_config",
@@ -61,6 +62,11 @@ function returnIcon(name) {
 const selectedIndex = ref(null);
 const geoJson = ref(null);
 const geoJsonLoading = ref(false);
+const CITY_PROPERTY_VALUES = {
+	taipei: "臺北市",
+	newtaipei: "新北市",
+	taoyuan: "桃園市",
+};
 
 const inlineMapConfig = computed(() => {
 	if (!Array.isArray(props.map_config)) return null;
@@ -74,6 +80,20 @@ const inlineMapConfig = computed(() => {
 });
 
 const hasInlineMap = computed(() => Boolean(inlineMapConfig.value));
+const inlineMapFeatures = computed(() => {
+	const features = geoJson.value?.features || [];
+	const cityName =
+		CITY_PROPERTY_VALUES[props.activeCity] ||
+		CITY_PROPERTY_VALUES[inlineMapConfig.value?.city];
+
+	if (!cityName) return features;
+
+	const filteredFeatures = features.filter(
+		(feature) => feature.properties?.city === cityName
+	);
+
+	return filteredFeatures.length ? filteredFeatures : features;
+});
 const fillExpression = computed(
 	() => inlineMapConfig.value?.paint?.["fill-color"]
 );
@@ -121,7 +141,6 @@ function walkCoordinates(coordinates, callback) {
 }
 
 const geoBounds = computed(() => {
-	const features = geoJson.value?.features || [];
 	const bounds = {
 		minLng: Infinity,
 		maxLng: -Infinity,
@@ -129,7 +148,7 @@ const geoBounds = computed(() => {
 		maxLat: -Infinity,
 	};
 
-	features.forEach((feature) => {
+	inlineMapFeatures.value.forEach((feature) => {
 		walkCoordinates(feature.geometry?.coordinates, ([lng, lat]) => {
 			bounds.minLng = Math.min(bounds.minLng, lng);
 			bounds.maxLng = Math.max(bounds.maxLng, lng);
@@ -201,8 +220,7 @@ function getFeatureColor(feature) {
 }
 
 const inlineMapPaths = computed(() => {
-	const features = geoJson.value?.features || [];
-	return features.map((feature) => ({
+	return inlineMapFeatures.value.map((feature) => ({
 		path: geometryToPath(feature.geometry),
 		fill: getFeatureColor(feature),
 		title: `${feature.properties?.city || ""}${
