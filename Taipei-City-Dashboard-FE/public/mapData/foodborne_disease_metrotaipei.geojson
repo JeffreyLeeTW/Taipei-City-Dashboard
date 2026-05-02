@@ -13,8 +13,8 @@
         "COUNTYCODE": "63000",
         "city": "臺北市",
         "district": "大安區",
-        "value": 15464,
-        "disease_count": 15464
+        "value": 71,
+        "disease_count": 71
       },
       "geometry": {
         "type": "Polygon",
@@ -2216,8 +2216,8 @@
         "COUNTYCODE": "63000",
         "city": "臺北市",
         "district": "文山區",
-        "value": 16102,
-        "disease_count": 16102
+        "value": 56,
+        "disease_count": 56
       },
       "geometry": {
         "type": "Polygon",
@@ -12907,8 +12907,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "永和區",
-        "value": 553,
-        "disease_count": 553
+        "value": 47,
+        "disease_count": 47
       },
       "geometry": {
         "type": "Polygon",
@@ -18110,8 +18110,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "新店區",
-        "value": 401,
-        "disease_count": 401
+        "value": 82,
+        "disease_count": 82
       },
       "geometry": {
         "type": "Polygon",
@@ -43433,8 +43433,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "土城區",
-        "value": 280,
-        "disease_count": 280
+        "value": 44,
+        "disease_count": 44
       },
       "geometry": {
         "type": "Polygon",
@@ -54544,8 +54544,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "蘆洲區",
-        "value": 263,
-        "disease_count": 263
+        "value": 57,
+        "disease_count": 57
       },
       "geometry": {
         "type": "Polygon",
@@ -57395,8 +57395,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "五股區",
-        "value": 141,
-        "disease_count": 141
+        "value": 32,
+        "disease_count": 32
       },
       "geometry": {
         "type": "Polygon",
@@ -68778,8 +68778,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "坪林區",
-        "value": 3,
-        "disease_count": 3
+        "value": 0,
+        "disease_count": 0
       },
       "geometry": {
         "type": "Polygon",
@@ -98285,8 +98285,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "平溪區",
-        "value": 5,
-        "disease_count": 5
+        "value": 1,
+        "disease_count": 1
       },
       "geometry": {
         "type": "Polygon",
@@ -117448,8 +117448,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "烏來區",
-        "value": 12,
-        "disease_count": 12
+        "value": 0,
+        "disease_count": 0
       },
       "geometry": {
         "type": "Polygon",
@@ -138723,8 +138723,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "淡水區",
-        "value": 270,
-        "disease_count": 270
+        "value": 61,
+        "disease_count": 61
       },
       "geometry": {
         "type": "Polygon",
@@ -149814,8 +149814,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "瑞芳區",
-        "value": 63,
-        "disease_count": 63
+        "value": 16,
+        "disease_count": 16
       },
       "geometry": {
         "type": "Polygon",
@@ -171973,8 +171973,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "林口區",
-        "value": 86,
-        "disease_count": 86
+        "value": 25,
+        "disease_count": 25
       },
       "geometry": {
         "type": "Polygon",
@@ -196296,8 +196296,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "三芝區",
-        "value": 46,
-        "disease_count": 46
+        "value": 6,
+        "disease_count": 6
       },
       "geometry": {
         "type": "Polygon",
@@ -210743,8 +210743,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "八里區",
-        "value": 75,
-        "disease_count": 75
+        "value": 12,
+        "disease_count": 12
       },
       "geometry": {
         "type": "Polygon",
@@ -224034,8 +224034,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "三峽區",
-        "value": 305,
-        "disease_count": 305
+        "value": 60,
+        "disease_count": 60
       },
       "geometry": {
         "type": "Polygon",
@@ -247341,8 +247341,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "鶯歌區",
-        "value": 180,
-        "disease_count": 180
+        "value": 39,
+        "disease_count": 39
       },
       "geometry": {
         "type": "Polygon",
@@ -254112,8 +254112,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "中和區",
-        "value": 570,
-        "disease_count": 570
+        "value": 96,
+        "disease_count": 96
       },
       "geometry": {
         "type": "Polygon",
@@ -264811,8 +264811,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "樹林區",
-        "value": 246,
-        "disease_count": 246
+        "value": 43,
+        "disease_count": 43
       },
       "geometry": {
         "type": "Polygon",
@@ -275602,8 +275602,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "深坑區",
-        "value": 42,
-        "disease_count": 42
+        "value": 6,
+        "disease_count": 6
       },
       "geometry": {
         "type": "Polygon",
@@ -284189,8 +284189,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "板橋區",
-        "value": 614,
-        "disease_count": 614
+        "value": 106,
+        "disease_count": 106
       },
       "geometry": {
         "type": "Polygon",
@@ -292412,8 +292412,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "石碇區",
-        "value": 14,
-        "disease_count": 14
+        "value": 2,
+        "disease_count": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -320371,8 +320371,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "新莊區",
-        "value": 385,
-        "disease_count": 385
+        "value": 94,
+        "disease_count": 94
       },
       "geometry": {
         "type": "Polygon",
@@ -331658,8 +331658,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "泰山區",
-        "value": 85,
-        "disease_count": 85
+        "value": 24,
+        "disease_count": 24
       },
       "geometry": {
         "type": "Polygon",
@@ -344661,8 +344661,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "三重區",
-        "value": 565,
-        "disease_count": 565
+        "value": 101,
+        "disease_count": 101
       },
       "geometry": {
         "type": "Polygon",
@@ -349452,8 +349452,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "雙溪區",
-        "value": 6,
-        "disease_count": 6
+        "value": 0,
+        "disease_count": 0
       },
       "geometry": {
         "type": "Polygon",
@@ -380411,8 +380411,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "貢寮區",
-        "value": 16,
-        "disease_count": 16
+        "value": 2,
+        "disease_count": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -400030,8 +400030,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "汐止區",
-        "value": 323,
-        "disease_count": 323
+        "value": 73,
+        "disease_count": 73
       },
       "geometry": {
         "type": "Polygon",
@@ -414989,8 +414989,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "萬里區",
-        "value": 22,
-        "disease_count": 22
+        "value": 5,
+        "disease_count": 5
       },
       "geometry": {
         "type": "Polygon",
@@ -427364,8 +427364,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "金山區",
-        "value": 20,
-        "disease_count": 20
+        "value": 5,
+        "disease_count": 5
       },
       "geometry": {
         "type": "Polygon",
@@ -437755,8 +437755,8 @@
         "COUNTYCODE": "65000",
         "city": "新北市",
         "district": "石門區",
-        "value": 22,
-        "disease_count": 22
+        "value": 2,
+        "disease_count": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -448810,8 +448810,8 @@
         "COUNTYCODE": "63000",
         "city": "臺北市",
         "district": "信義區",
-        "value": 13361,
-        "disease_count": 13361
+        "value": 60,
+        "disease_count": 60
       },
       "geometry": {
         "type": "Polygon",
@@ -451385,8 +451385,8 @@
         "COUNTYCODE": "63000",
         "city": "臺北市",
         "district": "萬華區",
-        "value": 9917,
-        "disease_count": 9917
+        "value": 54,
+        "disease_count": 54
       },
       "geometry": {
         "type": "Polygon",
@@ -454444,8 +454444,8 @@
         "COUNTYCODE": "63000",
         "city": "臺北市",
         "district": "中正區",
-        "value": 7945,
-        "disease_count": 7945
+        "value": 37,
+        "disease_count": 37
       },
       "geometry": {
         "type": "Polygon",
@@ -456483,8 +456483,8 @@
         "COUNTYCODE": "63000",
         "city": "臺北市",
         "district": "松山區",
-        "value": 11522,
-        "disease_count": 11522
+        "value": 54,
+        "disease_count": 54
       },
       "geometry": {
         "type": "Polygon",
@@ -458398,8 +458398,8 @@
         "COUNTYCODE": "63000",
         "city": "臺北市",
         "district": "大同區",
-        "value": 6905,
-        "disease_count": 6905
+        "value": 33,
+        "disease_count": 33
       },
       "geometry": {
         "type": "Polygon",
@@ -460257,8 +460257,8 @@
         "COUNTYCODE": "63000",
         "city": "臺北市",
         "district": "中山區",
-        "value": 14354,
-        "disease_count": 14354
+        "value": 40,
+        "disease_count": 40
       },
       "geometry": {
         "type": "Polygon",
@@ -463264,8 +463264,8 @@
         "COUNTYCODE": "63000",
         "city": "臺北市",
         "district": "士林區",
-        "value": 16379,
-        "disease_count": 16379
+        "value": 112,
+        "disease_count": 112
       },
       "geometry": {
         "type": "Polygon",
@@ -476011,8 +476011,8 @@
         "COUNTYCODE": "63000",
         "city": "臺北市",
         "district": "北投區",
-        "value": 15187,
-        "disease_count": 15187
+        "value": 108,
+        "disease_count": 108
       },
       "geometry": {
         "type": "Polygon",
@@ -486702,8 +486702,8 @@
         "COUNTYCODE": "63000",
         "city": "臺北市",
         "district": "南港區",
-        "value": 7623,
-        "disease_count": 7623
+        "value": 35,
+        "disease_count": 35
       },
       "geometry": {
         "type": "Polygon",
@@ -494957,8 +494957,8 @@
         "COUNTYCODE": "63000",
         "city": "臺北市",
         "district": "內湖區",
-        "value": 18361,
-        "disease_count": 18361
+        "value": 69,
+        "disease_count": 69
       },
       "geometry": {
         "type": "Polygon",
