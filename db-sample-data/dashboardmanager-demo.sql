@@ -31,6 +31,27 @@ aging_kpi	{#F65658,#F49F36,#F5C860,#9AC17C,#4CB495,#569C9A,#60819C,#2F8AB1}	{Tex
 aging_workforce_trend	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A}	{BarPercentChart,RadarChart,ColumnChart}	%
 bike_network	{#a0b8e8,#b7ff98}	{DonutChart,BarChart}	公里
 bike_map	{#a0b8e8,#b7ff98}	{MapLegend}	條
+foodborne_disease_three_d_district_year	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A,#7B61FF,#00A6A6,#B9822B,#6C757D}	{ColumnChart}	件
+foodborne_disease_three_d_year_district	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A,#7B61FF,#00A6A6,#B9822B,#6C757D}	{ColumnChart}	件
+foodborne_disease_two_d_district	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A,#7B61FF,#00A6A6,#B9822B,#6C757D}	{BarChart,ColumnChart}	件
+foodborne_disease_two_d_year	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A,#7B61FF,#00A6A6,#B9822B,#6C757D}	{ColumnChart,BarChart}	件
+foodborne_disease_percent_district	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A,#7B61FF,#00A6A6,#B9822B,#6C757D}	{DonutChart,BarPercentChart}	件
+foodborne_disease_time_year	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A,#7B61FF,#00A6A6,#B9822B,#6C757D}	{TimelineSeparateChart,TimelineStackedChart}	件
+foodborne_disease_map_legend	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A,#7B61FF,#00A6A6,#B9822B,#6C757D,#8DD3C7,#BEBADA,#FB8072,#80B1D3,#FDB462,#B3DE69,#FCCDE5,#D9D9D9,#BC80BD,#CCEBC5,#FFED6F,#1B9E77,#D95F02,#7570B3,#E7298A,#66A61E,#E6AB02,#A6761D,#666666}	{MapLegend}	件
+food_inspection_three_d_district_year	{#2B8CBE,#7BCCC4,#A8DDB5,#FDD49E,#FDBB84,#FC8D59,#D7301F,#7F0000,#756BB1,#31A354,#636363,#9E9AC8}	{ColumnChart}	件
+food_inspection_three_d_year_district	{#2B8CBE,#7BCCC4,#A8DDB5,#FDD49E,#FDBB84,#FC8D59,#D7301F,#7F0000,#756BB1,#31A354,#636363,#9E9AC8}	{ColumnChart}	件
+food_inspection_two_d_district	{#2B8CBE,#7BCCC4,#A8DDB5,#FDD49E,#FDBB84,#FC8D59,#D7301F,#7F0000,#756BB1,#31A354,#636363,#9E9AC8}	{BarChart,ColumnChart}	件
+food_inspection_two_d_year	{#2B8CBE,#7BCCC4,#A8DDB5,#FDD49E,#FDBB84,#FC8D59,#D7301F,#7F0000,#756BB1,#31A354,#636363,#9E9AC8}	{ColumnChart,BarChart}	件
+food_inspection_percent_result	{#56B96D,#ED6A45}	{DonutChart,BarPercentChart}	件
+food_inspection_time_daily	{#2B8CBE,#7BCCC4,#A8DDB5,#FDD49E,#FDBB84,#FC8D59,#D7301F,#7F0000,#756BB1,#31A354,#636363,#9E9AC8}	{TimelineSeparateChart,TimelineStackedChart}	件
+food_inspection_map_legend	{#2B8CBE,#7BCCC4,#A8DDB5,#FDD49E,#FDBB84,#FC8D59,#D7301F,#7F0000,#756BB1,#31A354,#636363,#9E9AC8,#8DD3C7,#BEBADA,#FB8072,#80B1D3,#FDB462,#B3DE69,#FCCDE5,#D9D9D9,#BC80BD,#CCEBC5,#FFED6F,#1B9E77,#D95F02,#7570B3,#E7298A,#66A61E,#E6AB02,#A6761D,#666666}	{MapLegend}	件
+emergency_medical_service_three_d_district_city	{#D84A4A,#3E8E7E,#F2C14E,#6D5DF2,#4B6F44,#8C564B,#4C78A8,#F58518,#54A24B,#E45756,#72B7B2,#B279A2}	{ColumnChart}	家
+emergency_medical_service_three_d_city_district	{#D84A4A,#3E8E7E,#F2C14E,#6D5DF2,#4B6F44,#8C564B,#4C78A8,#F58518,#54A24B,#E45756,#72B7B2,#B279A2}	{ColumnChart}	家
+emergency_medical_service_two_d_district	{#D84A4A,#3E8E7E,#F2C14E,#6D5DF2,#4B6F44,#8C564B,#4C78A8,#F58518,#54A24B,#E45756,#72B7B2,#B279A2}	{BarChart,ColumnChart}	家
+emergency_medical_service_two_d_city	{#D84A4A,#3E8E7E,#F2C14E,#6D5DF2,#4B6F44,#8C564B,#4C78A8,#F58518,#54A24B,#E45756,#72B7B2,#B279A2}	{DonutChart,BarChart}	家
+emergency_medical_service_percent_city	{#D84A4A,#3E8E7E,#F2C14E,#6D5DF2,#4B6F44,#8C564B,#4C78A8,#F58518,#54A24B,#E45756,#72B7B2,#B279A2}	{DonutChart,BarPercentChart}	家
+emergency_medical_service_time_created	{#D84A4A,#3E8E7E,#F2C14E,#6D5DF2,#4B6F44,#8C564B,#4C78A8,#F58518,#54A24B,#E45756,#72B7B2,#B279A2}	{TimelineSeparateChart,TimelineStackedChart}	家
+emergency_medical_service_map_legend	{#D84A4A,#3E8E7E,#F2C14E,#6D5DF2,#4B6F44,#8C564B,#4C78A8,#F58518,#54A24B,#E45756,#72B7B2,#B279A2,#8DD3C7,#BEBADA,#FB8072,#80B1D3,#FDB462,#B3DE69,#FCCDE5,#D9D9D9,#BC80BD,#CCEBC5,#FFED6F,#1B9E77,#D95F02,#7570B3,#E7298A,#66A61E,#E6AB02,#A6761D,#666666}	{MapLegend}	家
 \.
 
 
@@ -43,6 +64,8 @@ COPY public.component_maps (id, index, title, type, source, size, icon, paint, p
 99	youbike_realtime_metrotaipei	youbike站點	symbol	geojson	\N	youbike	{}	[{"key":"sna","name":"場站名稱"},{"key":"sno","name":"場站ID"},{"key":"available_return_bikes","name":"可還車位"},{"key":"available_rent_general_bikes","name":"剩餘車輛"}]
 100	bike_network_tpe	自行車路網	line	geojson	\N	\N	{"line-color":["match",["get","direction"],"雙向","#097138","單向","#007BFF","#808080"]}	[\r\n  {"key": "data_time", "name": "數據時間"},\r\n  {"key": "route_name", "name": "路線名稱"},\r\n  {"key": "city_code", "name": "城市代碼"},\r\n  {"key": "city", "name": "城市"},\r\n  {"key": "road_section_start", "name": "起點路段"},\r\n  {"key": "road_section_end", "name": "終點路段"},\r\n  {"key": "direction", "name": "方向"},\r\n  {"key": "cycling_length", "name": "自行車道長度"},\r\n  {"key": "finished_time", "name": "完工時間"},\r\n  {"key": "update_time", "name": "更新時間"}\r\n]
 101	bike_network_metrotaipei	自行車路網	line	geojson	\N	\N	{"line-color":["match",["get","direction"],"雙向","#097138","單向","#007BFF","#808080"]}	[\r\n  {"key": "data_time", "name": "數據時間"},\r\n  {"key": "route_name", "name": "路線名稱"},\r\n  {"key": "city_code", "name": "城市代碼"},\r\n  {"key": "city", "name": "城市"},\r\n  {"key": "road_section_start", "name": "起點路段"},\r\n  {"key": "road_section_end", "name": "終點路段"},\r\n  {"key": "direction", "name": "方向"},\r\n  {"key": "cycling_length", "name": "自行車道長度"},\r\n  {"key": "finished_time", "name": "完工時間"},\r\n  {"key": "update_time", "name": "更新時間"}\r\n]
+102	emergency_medical_services_taipei	急救責任醫院	circle	geojson	\N	\N	{"circle-color":"#D84A4A","circle-radius":6,"circle-stroke-color":"#FFFFFF","circle-stroke-width":1}	[{"key":"hospital_name","name":"醫院名稱"},{"key":"city","name":"城市"},{"key":"district","name":"行政區"},{"key":"address","name":"地址"},{"key":"tel","name":"電話"}]
+103	emergency_medical_services	急救責任醫院	circle	geojson	\N	\N	{"circle-color":["match",["get","city"],"臺北市","#D84A4A","新北市","#3E8E7E","#D84A4A"],"circle-radius":6,"circle-stroke-color":"#FFFFFF","circle-stroke-width":1}	[{"key":"hospital_name","name":"醫院名稱"},{"key":"city","name":"城市"},{"key":"district","name":"行政區"},{"key":"address","name":"地址"},{"key":"tel","name":"電話"}]
 \.
 
 
@@ -59,6 +82,27 @@ COPY public.components (id, index, name) FROM stdin;
 218	aging_kpi	長照指標
 215	aging_workforce_trend	高齡就業人口之年增結構
 217	bike_map	自行車道路網圖資
+219	foodborne_disease_three_d_district_year	食品相關疾病案件（行政區 x 年度）
+220	foodborne_disease_three_d_year_district	食品相關疾病案件（年度 x 行政區）
+221	foodborne_disease_two_d_district	食品相關疾病案件（行政區總覽）
+222	foodborne_disease_two_d_year	食品相關疾病案件（年度總覽）
+223	foodborne_disease_percent_district	食品相關疾病案件（行政區占比）
+224	foodborne_disease_time_year	食品相關疾病案件（年度趨勢）
+225	foodborne_disease_map_legend	食品相關疾病案件圖例
+226	food_inspection_three_d_district_year	食品抽驗量（行政區 x 年度）
+227	food_inspection_three_d_year_district	食品抽驗量（年度 x 行政區）
+228	food_inspection_two_d_district	食品抽驗量（行政區總覽）
+229	food_inspection_two_d_year	食品抽驗量（年度總覽）
+230	food_inspection_percent_result	食品抽驗結果占比
+231	food_inspection_time_daily	食品抽驗量（日趨勢）
+232	food_inspection_map_legend	食品抽驗圖例
+233	emergency_medical_service_three_d_district_city	急救責任醫院數（行政區 x 城市）
+234	emergency_medical_service_three_d_city_district	急救責任醫院數（城市 x 行政區）
+235	emergency_medical_service_two_d_district	急救責任醫院數（行政區總覽）
+236	emergency_medical_service_two_d_city	急救責任醫院數（城市總覽）
+237	emergency_medical_service_percent_city	急救責任醫院占比
+238	emergency_medical_service_time_created	急救責任醫院數（時間序列）
+239	emergency_medical_service_map_legend	急救責任醫院圖例
 \.
 
 
@@ -76,11 +120,13 @@ COPY public.contributors (id, user_id, user_name, image, link, identity, descrip
 --
 
 COPY public.dashboards (id, index, name, components, icon, updated_at, created_at) FROM stdin;
-106	map-layers-taipei	圖資資訊	{217}	public	2025-03-12 01:59:00.512775+00	2024-03-21 10:04:24.928533+00
+106	map-layers-taipei	圖資資訊	{217,239}	public	2025-03-12 01:59:00.512775+00	2024-03-21 10:04:24.928533+00
 356	ltc_care_tpe	長照關懷	{214,215,216,218}	elderly	2025-02-26 08:43:42.86017+00	2024-03-21 09:38:37.66+00
 355	ltc_care_newtpe	長照關懷	{214,215,216,218}	elderly	2025-02-27 06:42:21.705931+00	2024-03-21 09:38:37.66+00
-359	map-layers-metrotaipei	圖資資訊	{217}	public	2024-05-16 03:56:12.76016+00	2024-03-21 10:04:24.928533+00
+359	map-layers-metrotaipei	圖資資訊	{217,239}	public	2024-05-16 03:56:12.76016+00	2024-03-21 10:04:24.928533+00
 358	practical_transportation_newtpe	務實交通	{60,212,213}	directions_car	2025-03-12 08:00:38.75842+00	2024-03-21 09:38:37.66+00
+360	health_food_medical_tpe	食安醫療	{219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239}	local_hospital	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00
+361	health_food_medical_metrotaipei	食安醫療	{219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239}	local_hospital	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00
 1	09a25cd9cb7d	收藏組件	\N	favorite	2025-03-14 07:34:22.247753+00	2025-03-14 07:34:22.247753+00
 2	3245d9eace5f	我的新儀表板	{215,218,216,213,212,214,60,146}	star	2025-03-14 14:55:11.732116+00	2025-03-14 14:55:11.732116+00
 \.
@@ -122,15 +168,61 @@ ebus_percent	\N	\N	\N	static	\N	\N	\N	交通局	顯示雙北電動公車比例	�
 ebus_percent	\N	\N	\N	static	\N	\N	\N	交通局	顯示臺北電動公車比例	此圖顯示臺北市電動公車的比例，呈現全市公車車隊中電動車所占比重，以及近年來電動公車數量的成長情形。圖表比較傳統燃油公車與電動公車的比例變化，並標示臺北市政府推動電動化政策、補助措施及其帶來的環保效益。透過這些數據，可評估臺北市電動公車的普及程度，及其在減碳與空氣品質改善上的貢獻，有助於進一步規劃更完善的公共運輸電動化策略，推動城市交通朝向低碳永續目標邁進。	可用於評估臺北市公共運輸電動化的進程，透過此圖顯示電動公車在市區公車總數中的占比及其成長趨勢。圖表呈現傳統燃油公車與電動公車的比例變化，並標示臺北市政府推動的政策措施、補助方案及相關環保效益等影響因素。透過這些數據，可分析臺北市電動公車的普及程度及其在減碳排放與空氣品質改善方面的貢獻，有助於進一步規劃更完善的公共運輸電動化策略，推動臺北朝向低碳與永續發展的城市目標邁進。	{https://tdx.transportdata.tw/api/basic/v2/Bus/Vehicle/City/Taipei?%24top=30&%24format=JSON}	{doit}	2025-02-15 05:56:00+00	2025-02-20 09:11:21.620625+00	percent	select '電動公車數量' as x_axis,y_axis,sum(data) data from \r\n(\r\nselect '電動巴士' as y_axis,count(*) as  data\r\nfrom public.bus_info_tpe\r\nwhere plate_numb like 'E%'\r\nunion all\r\nselect '非電動巴士' as y_axis,count(*) as  data\r\nfrom public.bus_info_tpe)d\r\ngroup by \r\ny_axis	\N	taipei
 youbike_availability	\N	{99}	\N	current	\N	10	minute	交通局	顯示當前雙北共享單車YouBike的使用情況。	顯示雙北地區（臺北市與新北市）當前共享單車 YouBike 的使用情況，格式為可借車輛數／全區車位數。資料來源為兩市交通局公開資料，每5分鐘更新一次，提供即時的車輛可用資訊與站點使用狀況，有助於掌握整體運行效率與民眾使用情形，亦可作為交通管理與營運調度的參考依據。	藉由顯示雙北地區 YouBike 的使用情況，以及觀察可借車輛數約為車柱總數的一半，可大致掌握目前停放於站點與使用中車輛的整體分布情形。使用者亦可透過地圖模式查詢雙北各站點的即時資訊，包括可借車輛數、可還空位數及站點位置，方便規劃路線與掌握使用狀況，提升共享單車的便利性與使用效率。	{https://tdx.transportdata.tw/api-service/swagger/basic/2cc9b888-a592-496f-99de-9ab35b7fb70d#/Bike/BikeApi_Availability_2181,https://tdx.transportdata.tw/api/basic/v2/Bike/Availability/City/NewTaipei?%24top=30&%24format=JSON}	{doit,ntpc}	2023-12-20 05:56:00+00	2024-03-19 06:08:17.99+00	percent	select x_axis,y_axis,sum(data)data\r\nfrom (select '在站車輛' as x_axis, \r\nunnest(ARRAY['可借車輛', '空位']) as y_axis, \r\nunnest(ARRAY[SUM(available_rent_general_bikes), SUM(available_return_bikes)]) as data\r\nfrom tran_ubike_realtime_new_tpe\r\nunion all \r\nselect '在站車輛' as x_axis, \r\nunnest(ARRAY['可借車輛', '空位']) as y_axis, \r\nunnest(ARRAY[SUM(available_rent_general_bikes), SUM(available_return_bikes)]) as data\r\nfrom tran_ubike_realtime)d\r\ngroup by x_axis,y_axis	\N	metrotaipei
 youbike_availability	\N	{70}	\N	current	\N	10	minute	交通局	顯示當前臺北市共享單車YouBike的使用情況。	顯示臺北市當前共享單車 YouBike 的使用情況，格式為可借車輛數／全市車位數。資料來源為臺北市政府交通局公開資料，每5分鐘更新一次，反映即時的使用狀況與車輛調度情形，可作為交通監測與市民使用參考依據。	藉由臺北市 YouBike 使用情況的顯示，以及全市可借車輛數約為車柱總數的一半，可大致掌握目前停放於站點與正在使用中的車輛數量。使用者可透過地圖模式查詢臺北市各站點的即時資訊，包括可借車輛數、可還空位數及站點位置，方便即時掌握使用狀況，提升共享單車的使用效率與便利性。	{https://tdx.transportdata.tw/api-service/swagger/basic/2cc9b888-a592-496f-99de-9ab35b7fb70d#/Bike/BikeApi_Availability_2181}	{doit}	2023-12-20 05:56:00+00	2024-03-19 06:08:17.99+00	percent	select '在站車輛' as x_axis, \r\nunnest(ARRAY['可借車輛', '空位']) as y_axis, \r\nunnest(ARRAY[SUM(available_rent_general_bikes), SUM(available_return_bikes)]) as data\r\nfrom tran_ubike_realtime	\N	taipei
+foodborne_disease_three_d_district_year	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品相關疾病案件（行政區 x 年度）	食品相關疾病案件（行政區 x 年度），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	three_d	select district as x_axis, trim(year) as y_axis, sum(cases)::int as data from public.foodborne_disease where city='臺北市' group by district, trim(year) order by district, trim(year)::int	\N	taipei
+foodborne_disease_three_d_district_year	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品相關疾病案件（行政區 x 年度）	食品相關疾病案件（行政區 x 年度），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	three_d	select district as x_axis, trim(year) as y_axis, sum(cases)::int as data from public.foodborne_disease group by district, trim(year) order by district, trim(year)::int	\N	metrotaipei
+foodborne_disease_three_d_year_district	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品相關疾病案件（年度 x 行政區）	食品相關疾病案件（年度 x 行政區），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	three_d	select trim(year) as x_axis, district as y_axis, sum(cases)::int as data from public.foodborne_disease where city='臺北市' group by trim(year), district order by trim(year)::int, district	\N	taipei
+foodborne_disease_three_d_year_district	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品相關疾病案件（年度 x 行政區）	食品相關疾病案件（年度 x 行政區），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	three_d	select trim(year) as x_axis, district as y_axis, sum(cases)::int as data from public.foodborne_disease group by trim(year), district order by trim(year)::int, district	\N	metrotaipei
+foodborne_disease_two_d_district	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品相關疾病案件（行政區總覽）	食品相關疾病案件（行政區總覽），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	two_d	select district as x_axis, sum(cases)::int as data from public.foodborne_disease where city='臺北市' group by district order by district	\N	taipei
+foodborne_disease_two_d_district	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品相關疾病案件（行政區總覽）	食品相關疾病案件（行政區總覽），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	two_d	select district as x_axis, sum(cases)::int as data from public.foodborne_disease group by district order by district	\N	metrotaipei
+foodborne_disease_two_d_year	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品相關疾病案件（年度總覽）	食品相關疾病案件（年度總覽），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	two_d	select trim(year) as x_axis, sum(cases)::int as data from public.foodborne_disease where city='臺北市' group by trim(year) order by trim(year)::int	\N	taipei
+foodborne_disease_two_d_year	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品相關疾病案件（年度總覽）	食品相關疾病案件（年度總覽），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	two_d	select trim(year) as x_axis, sum(cases)::int as data from public.foodborne_disease group by trim(year) order by trim(year)::int	\N	metrotaipei
+foodborne_disease_percent_district	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品相關疾病案件（行政區占比）	食品相關疾病案件（行政區占比），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	percent	select '食品相關疾病案件占比' as x_axis, district as y_axis, sum(cases)::int as data from public.foodborne_disease where city='臺北市' group by district order by district	\N	taipei
+foodborne_disease_percent_district	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品相關疾病案件（行政區占比）	食品相關疾病案件（行政區占比），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	percent	select '食品相關疾病案件占比' as x_axis, district as y_axis, sum(cases)::int as data from public.foodborne_disease group by district order by district	\N	metrotaipei
+foodborne_disease_time_year	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品相關疾病案件（年度趨勢）	食品相關疾病案件（年度趨勢），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	time	select make_timestamp(trim(year)::int + 1911, 1, 1, 0, 0, 0) as x_axis, district as y_axis, sum(cases)::float as data from public.foodborne_disease where city='臺北市' group by trim(year), district order by trim(year)::int, district	\N	taipei
+foodborne_disease_time_year	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品相關疾病案件（年度趨勢）	食品相關疾病案件（年度趨勢），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	time	select make_timestamp(trim(year)::int + 1911, 1, 1, 0, 0, 0) as x_axis, district as y_axis, sum(cases)::float as data from public.foodborne_disease group by trim(year), district order by trim(year)::int, district	\N	metrotaipei
+foodborne_disease_map_legend	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品相關疾病案件圖例	食品相關疾病案件圖例，依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	map_legend	select district as name, 'circle' as type, sum(cases)::float as value from public.foodborne_disease where city='臺北市' group by district order by value desc	\N	taipei
+foodborne_disease_map_legend	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品相關疾病案件圖例	食品相關疾病案件圖例，依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	map_legend	select district as name, 'circle' as type, sum(cases)::float as value from public.foodborne_disease group by district order by value desc	\N	metrotaipei
+food_inspection_three_d_district_year	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗量（行政區 x 年度）	食品抽驗量（行政區 x 年度），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	three_d	select district as x_axis, trim(year) as y_axis, sum(count)::int as data from public.food_inspection where city='臺北市' group by district, trim(year) order by district, trim(year)::int	\N	taipei
+food_inspection_three_d_district_year	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗量（行政區 x 年度）	食品抽驗量（行政區 x 年度），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	three_d	select district as x_axis, trim(year) as y_axis, sum(count)::int as data from public.food_inspection group by district, trim(year) order by district, trim(year)::int	\N	metrotaipei
+food_inspection_three_d_year_district	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗量（年度 x 行政區）	食品抽驗量（年度 x 行政區），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	three_d	select trim(year) as x_axis, district as y_axis, sum(count)::int as data from public.food_inspection where city='臺北市' group by trim(year), district order by trim(year)::int, district	\N	taipei
+food_inspection_three_d_year_district	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗量（年度 x 行政區）	食品抽驗量（年度 x 行政區），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	three_d	select trim(year) as x_axis, district as y_axis, sum(count)::int as data from public.food_inspection group by trim(year), district order by trim(year)::int, district	\N	metrotaipei
+food_inspection_two_d_district	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗量（行政區總覽）	食品抽驗量（行政區總覽），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	two_d	select district as x_axis, sum(count)::int as data from public.food_inspection where city='臺北市' group by district order by district	\N	taipei
+food_inspection_two_d_district	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗量（行政區總覽）	食品抽驗量（行政區總覽），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	two_d	select district as x_axis, sum(count)::int as data from public.food_inspection group by district order by district	\N	metrotaipei
+food_inspection_two_d_year	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗量（年度總覽）	食品抽驗量（年度總覽），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	two_d	select trim(year) as x_axis, sum(count)::int as data from public.food_inspection where city='臺北市' group by trim(year) order by trim(year)::int	\N	taipei
+food_inspection_two_d_year	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗量（年度總覽）	食品抽驗量（年度總覽），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	two_d	select trim(year) as x_axis, sum(count)::int as data from public.food_inspection group by trim(year) order by trim(year)::int	\N	metrotaipei
+food_inspection_percent_result	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗結果占比	食品抽驗結果占比，依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	percent	select '食品抽驗結果占比' as x_axis, case when result then '合格' else '不合格' end as y_axis, sum(count)::int as data from public.food_inspection where city='臺北市' group by y_axis order by y_axis	\N	taipei
+food_inspection_percent_result	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗結果占比	食品抽驗結果占比，依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	percent	select '食品抽驗結果占比' as x_axis, case when result then '合格' else '不合格' end as y_axis, sum(count)::int as data from public.food_inspection group by y_axis order by y_axis	\N	metrotaipei
+food_inspection_time_daily	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗量（日趨勢）	食品抽驗量（日趨勢），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	time	select to_timestamp(inspection_date, 'YYYY-MM-DD') at time zone 'Asia/Taipei' as x_axis, district as y_axis, sum(count)::float as data from public.food_inspection where city='臺北市' group by inspection_date, district order by inspection_date, district	\N	taipei
+food_inspection_time_daily	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗量（日趨勢）	食品抽驗量（日趨勢），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	time	select to_timestamp(inspection_date, 'YYYY-MM-DD') at time zone 'Asia/Taipei' as x_axis, district as y_axis, sum(count)::float as data from public.food_inspection group by inspection_date, district order by inspection_date, district	\N	metrotaipei
+food_inspection_map_legend	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗圖例	食品抽驗圖例，依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	map_legend	select district as name, 'circle' as type, sum(count)::float as value from public.food_inspection where city='臺北市' group by district order by value desc	\N	taipei
+food_inspection_map_legend	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗圖例	食品抽驗圖例，依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	map_legend	select district as name, 'circle' as type, sum(count)::float as value from public.food_inspection group by district order by value desc	\N	metrotaipei
+emergency_medical_service_three_d_district_city	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	急救責任醫院數（行政區 x 城市）	急救責任醫院數（行政區 x 城市），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	three_d	select district as x_axis, city as y_axis, count(*)::int as data from public.emergency_medical_service where city='臺北市' group by district, city order by district, city	\N	taipei
+emergency_medical_service_three_d_district_city	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	急救責任醫院數（行政區 x 城市）	急救責任醫院數（行政區 x 城市），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	three_d	select district as x_axis, city as y_axis, count(*)::int as data from public.emergency_medical_service group by district, city order by district, city	\N	metrotaipei
+emergency_medical_service_three_d_city_district	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	急救責任醫院數（城市 x 行政區）	急救責任醫院數（城市 x 行政區），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	three_d	select city as x_axis, district as y_axis, count(*)::int as data from public.emergency_medical_service where city='臺北市' group by city, district order by city, district	\N	taipei
+emergency_medical_service_three_d_city_district	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	急救責任醫院數（城市 x 行政區）	急救責任醫院數（城市 x 行政區），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	three_d	select city as x_axis, district as y_axis, count(*)::int as data from public.emergency_medical_service group by city, district order by city, district	\N	metrotaipei
+emergency_medical_service_two_d_district	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	急救責任醫院數（行政區總覽）	急救責任醫院數（行政區總覽），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	two_d	select district as x_axis, count(*)::int as data from public.emergency_medical_service where city='臺北市' group by district order by district	\N	taipei
+emergency_medical_service_two_d_district	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	急救責任醫院數（行政區總覽）	急救責任醫院數（行政區總覽），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	two_d	select district as x_axis, count(*)::int as data from public.emergency_medical_service group by district order by district	\N	metrotaipei
+emergency_medical_service_two_d_city	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	急救責任醫院數（城市總覽）	急救責任醫院數（城市總覽），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	two_d	select city as x_axis, count(*)::int as data from public.emergency_medical_service where city='臺北市' group by city order by city	\N	taipei
+emergency_medical_service_two_d_city	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	急救責任醫院數（城市總覽）	急救責任醫院數（城市總覽），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	two_d	select city as x_axis, count(*)::int as data from public.emergency_medical_service group by city order by city	\N	metrotaipei
+emergency_medical_service_percent_city	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	急救責任醫院占比	急救責任醫院占比，依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	percent	select '急救責任醫院占比' as x_axis, city as y_axis, count(*)::int as data from public.emergency_medical_service where city='臺北市' group by city order by city	\N	taipei
+emergency_medical_service_percent_city	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	急救責任醫院占比	急救責任醫院占比，依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	percent	select '急救責任醫院占比' as x_axis, city as y_axis, count(*)::int as data from public.emergency_medical_service group by city order by city	\N	metrotaipei
+emergency_medical_service_time_created	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	急救責任醫院數（時間序列）	急救責任醫院數（時間序列），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	time	select date_trunc('day', created_at) as x_axis, city as y_axis, count(*)::float as data from public.emergency_medical_service where city='臺北市' group by date_trunc('day', created_at), city order by x_axis, city	\N	taipei
+emergency_medical_service_time_created	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	急救責任醫院數（時間序列）	急救責任醫院數（時間序列），依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	time	select date_trunc('day', created_at) as x_axis, city as y_axis, count(*)::float as data from public.emergency_medical_service group by date_trunc('day', created_at), city order by x_axis, city	\N	metrotaipei
+emergency_medical_service_map_legend	\N	{102}	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	急救責任醫院圖例	急救責任醫院圖例，依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	map_legend	select district as name, 'circle' as type, count(*)::float as value from public.emergency_medical_service where city='臺北市' group by district order by value desc	\N	taipei
+emergency_medical_service_map_legend	\N	{103}	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	急救責任醫院圖例	急救責任醫院圖例，依需求輸出 x_axis / y_axis / data（或 name / type / value）。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00	map_legend	select district as name, 'circle' as type, count(*)::float as value from public.emergency_medical_service group by district order by value desc	\N	metrotaipei
 \.
 
 
 COPY public.dashboard_groups (dashboard_id, group_id) FROM stdin;
+1	4
+2	4
 106	2
 356	2
 355	3
 359	3
 358	3
+360	2
+361	3
 \.
 
 --
@@ -149,6 +241,240 @@ SELECT pg_catalog.setval('public.dashboards_id_seq', (SELECT COALESCE(MAX(id), 0
 --
 
 SELECT pg_catalog.setval('public.groups_id_seq', (SELECT COALESCE(MAX(id), 4) FROM public.groups), true);
+
+
+--
+-- Custom overrides: food safety and emergency medical dashboard
+--
+
+INSERT INTO public.component_maps (id, index, title, type, source, size, icon, paint, property)
+VALUES
+(
+    104,
+    'foodborne_disease_metrotaipei',
+    '食品相關疾病分布',
+    'fill',
+    'geojson',
+    NULL,
+    NULL,
+    $${"fill-color":["step",["get","value"],"#E8F6EF",100,"#B8E3C8",500,"#7BC87C",1000,"#2E8B57",5000,"#0B3D2E"],"fill-opacity":0.72,"fill-outline-color":"#FFFFFF"}$$::json,
+    $$[{"key":"city","name":"城市"},{"key":"district","name":"行政區"},{"key":"value","name":"食品相關疾病數量"}]$$::json
+)
+ON CONFLICT (id) DO UPDATE SET
+    index = EXCLUDED.index,
+    title = EXCLUDED.title,
+    type = EXCLUDED.type,
+    source = EXCLUDED.source,
+    size = EXCLUDED.size,
+    icon = EXCLUDED.icon,
+    paint = EXCLUDED.paint,
+    property = EXCLUDED.property;
+
+INSERT INTO public.component_charts (index, color, types, unit)
+VALUES
+    ('foodborne_disease_map_legend', '{#E8F6EF,#B8E3C8,#7BC87C,#2E8B57,#0B3D2E}', '{MapLegend}', '件'),
+    ('food_inspection_three_d_district_year', '{#56B96D,#ED6A45}', '{ColumnChart}', '件'),
+    ('emergency_medical_service_map_legend', '{#D84A4A,#3E8E7E,#F2C14E}', '{TextUnitChart}', '家')
+ON CONFLICT (index) DO UPDATE SET
+    color = EXCLUDED.color,
+    types = EXCLUDED.types,
+    unit = EXCLUDED.unit;
+
+UPDATE public.components
+SET name = CASE id
+    WHEN 225 THEN '食品相關疾病分布'
+    WHEN 226 THEN '食品抽驗結果（行政區）'
+    WHEN 239 THEN '急救責任醫院數量'
+    ELSE name
+END
+WHERE id IN (225, 226, 239);
+
+UPDATE public.dashboards
+SET components = '{225,226}',
+    updated_at = '2026-05-02 00:00:00+00'
+WHERE index IN ('health_food_medical_tpe', 'health_food_medical_metrotaipei');
+
+INSERT INTO public.dashboards (id, index, name, components, icon, updated_at, created_at)
+VALUES
+    (365, 'medical_emergency_tpe', '醫療救護', '{239}', 'local_hospital', '2026-05-02 00:00:00+00', '2026-05-02 00:00:00+00'),
+    (366, 'medical_emergency_newtpe', '醫療救護', '{239}', 'local_hospital', '2026-05-02 00:00:00+00', '2026-05-02 00:00:00+00')
+ON CONFLICT (index) DO UPDATE SET
+    name = EXCLUDED.name,
+    components = EXCLUDED.components,
+    icon = EXCLUDED.icon,
+    updated_at = EXCLUDED.updated_at;
+
+DELETE FROM public.dashboard_groups
+USING public.dashboards
+WHERE public.dashboard_groups.dashboard_id = public.dashboards.id
+  AND public.dashboards.index IN ('medical_emergency_tpe', 'medical_emergency_newtpe');
+
+INSERT INTO public.dashboard_groups (dashboard_id, group_id)
+SELECT dashboards.id, groups.id
+FROM public.dashboards
+JOIN public.groups ON (
+    (dashboards.index = 'medical_emergency_tpe' AND groups.name = 'taipei')
+    OR (dashboards.index = 'medical_emergency_newtpe' AND groups.name = 'metrotaipei')
+)
+ON CONFLICT (dashboard_id, group_id) DO NOTHING;
+
+UPDATE public.query_charts
+SET
+    map_config_ids = '{104}',
+    short_desc = '食品相關疾病分布',
+    long_desc = '以雙北行政區界呈現食品相關疾病案件數量，顏色越深代表累計案件數越高。',
+    use_case = '可用於辨識雙北食品相關疾病案件較集中的行政區，輔助食安風險觀察與資源配置。',
+    query_type = 'map_legend',
+    query_chart = $$SELECT *
+FROM (
+    SELECT '0 - 99 件' AS name, 'fill' AS type
+    UNION ALL SELECT '100 - 499 件', 'fill'
+    UNION ALL SELECT '500 - 999 件', 'fill'
+    UNION ALL SELECT '1,000 - 4,999 件', 'fill'
+    UNION ALL SELECT '5,000 件以上', 'fill'
+) legend$$
+WHERE index = 'foodborne_disease_map_legend';
+
+UPDATE public.query_charts
+SET
+    short_desc = '食品抽驗合格與不合格數量（行政區）',
+    long_desc = '以堆疊長條圖呈現各行政區食品抽驗數量，長條下半部為合格、上半部為不合格。',
+    use_case = '可用於比較各行政區食品抽驗量與不合格量，快速辨識抽驗量體與異常較高的區域。',
+    query_type = 'three_d',
+    query_chart = $$WITH districts AS (
+    SELECT DISTINCT city, district
+    FROM public.food_inspection
+    WHERE city = '臺北市'
+), statuses AS (
+    SELECT '合格' AS label, TRUE AS result, 1 AS sort_order
+    UNION ALL
+    SELECT '不合格', FALSE, 2
+)
+SELECT districts.district AS x_axis,
+       statuses.label AS y_axis,
+       COALESCE(SUM(food_inspection.count), 0)::int AS data
+FROM districts
+CROSS JOIN statuses
+LEFT JOIN public.food_inspection
+    ON food_inspection.city = districts.city
+   AND food_inspection.district = districts.district
+   AND food_inspection.result = statuses.result
+GROUP BY districts.district, statuses.label, statuses.sort_order
+ORDER BY districts.district, statuses.sort_order$$
+WHERE index = 'food_inspection_three_d_district_year'
+  AND city = 'taipei';
+
+UPDATE public.query_charts
+SET
+    short_desc = '食品抽驗合格與不合格數量（雙北行政區）',
+    long_desc = '以堆疊長條圖呈現雙北各行政區食品抽驗數量，長條下半部為合格、上半部為不合格。',
+    use_case = '可用於比較雙北各行政區食品抽驗量與不合格量，快速辨識抽驗量體與異常較高的區域。',
+    query_type = 'three_d',
+    query_chart = $$WITH districts AS (
+    SELECT DISTINCT city, district
+    FROM public.food_inspection
+), statuses AS (
+    SELECT '合格' AS label, TRUE AS result, 1 AS sort_order
+    UNION ALL
+    SELECT '不合格', FALSE, 2
+)
+SELECT districts.city || districts.district AS x_axis,
+       statuses.label AS y_axis,
+       COALESCE(SUM(food_inspection.count), 0)::int AS data
+FROM districts
+CROSS JOIN statuses
+LEFT JOIN public.food_inspection
+    ON food_inspection.city = districts.city
+   AND food_inspection.district = districts.district
+   AND food_inspection.result = statuses.result
+GROUP BY districts.city, districts.district, statuses.label, statuses.sort_order
+ORDER BY districts.city, districts.district, statuses.sort_order$$
+WHERE index = 'food_inspection_three_d_district_year'
+  AND city = 'metrotaipei';
+
+UPDATE public.query_charts
+SET
+    map_config_ids = '{103}',
+    short_desc = '急救責任醫院數量',
+    long_desc = '統計臺北市、新北市與雙北合計的急救責任醫院數量，並可在地圖上顯示醫院位置。',
+    use_case = '可用於快速掌握雙北急救責任醫院資源分布，搭配地圖檢視各院位置與基本資訊。',
+    query_type = 'three_d',
+    query_chart = $$SELECT y_axis, icon, data
+FROM (
+    SELECT '臺北市' AS y_axis, '家' AS icon, COUNT(*)::int AS data, 1 AS sort_order
+    FROM public.emergency_medical_service
+    WHERE city = '臺北市'
+    UNION ALL
+    SELECT '新北市' AS y_axis, '家' AS icon, COUNT(*)::int AS data, 2 AS sort_order
+    FROM public.emergency_medical_service
+    WHERE city = '新北市'
+    UNION ALL
+    SELECT '雙北' AS y_axis, '家' AS icon, COUNT(*)::int AS data, 3 AS sort_order
+    FROM public.emergency_medical_service
+) stats
+ORDER BY sort_order$$
+WHERE index = 'emergency_medical_service_map_legend';
+
+WITH keep(id) AS (
+    VALUES (60),(213),(212),(214),(216),(218),(215),(217),(226),(239),(225)
+),
+dash AS (
+    SELECT dashboards.id,
+           ARRAY(
+               SELECT unnest(dashboards.components)
+               INTERSECT
+               SELECT id FROM keep
+               ORDER BY 1
+           )::int[] AS kept_components
+    FROM public.dashboards
+)
+UPDATE public.dashboards
+SET components = dash.kept_components,
+    updated_at = '2026-05-02 00:00:00+00'
+FROM dash
+WHERE public.dashboards.id = dash.id
+  AND public.dashboards.components IS DISTINCT FROM dash.kept_components;
+
+WITH keep(id) AS (
+    VALUES (60),(213),(212),(214),(216),(218),(215),(217),(226),(239),(225)
+),
+keep_idx AS (
+    SELECT index FROM public.components WHERE id IN (SELECT id FROM keep)
+)
+DELETE FROM public.query_charts
+WHERE index NOT IN (SELECT index FROM keep_idx);
+
+WITH keep(id) AS (
+    VALUES (60),(213),(212),(214),(216),(218),(215),(217),(226),(239),(225)
+),
+keep_idx AS (
+    SELECT index FROM public.components WHERE id IN (SELECT id FROM keep)
+)
+DELETE FROM public.component_charts
+WHERE index NOT IN (SELECT index FROM keep_idx);
+
+WITH keep(id) AS (
+    VALUES (60),(213),(212),(214),(216),(218),(215),(217),(226),(239),(225)
+),
+kept_indexes AS (
+    SELECT index FROM public.components WHERE id IN (SELECT id FROM keep)
+),
+kept_map_ids AS (
+    SELECT DISTINCT unnest(map_config_ids) AS id
+    FROM public.query_charts
+    WHERE index IN (SELECT index FROM kept_indexes)
+      AND map_config_ids IS NOT NULL
+)
+DELETE FROM public.component_maps
+WHERE id NOT IN (SELECT id FROM kept_map_ids);
+
+WITH keep(id) AS (
+    VALUES (60),(213),(212),(214),(216),(218),(215),(217),(226),(239),(225)
+)
+DELETE FROM public.components
+WHERE id NOT IN (SELECT id FROM keep);
+
+SELECT pg_catalog.setval('public.dashboards_id_seq', (SELECT COALESCE(MAX(id), 0) FROM public.dashboards), true);
 
 
 -- Completed on 2024-02-16 10:38:44 UTC
