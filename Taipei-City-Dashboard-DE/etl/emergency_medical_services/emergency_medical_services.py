@@ -15,6 +15,13 @@ OUTPUT_GEOJSON = (
     / "mapData"
     / "emergency_medical_services.geojson"
 )
+OUTPUT_TAIPEI_GEOJSON = (
+    REPO_DIR
+    / "Taipei-City-Dashboard-FE"
+    / "public"
+    / "mapData"
+    / "emergency_medical_services_taipei.geojson"
+)
 
 TAIPEI_API_URL = (
     "https://data.taipei/api/v1/dataset/"
@@ -199,7 +206,7 @@ def parse_coordinate(value):
         return None
 
 
-def write_geojson(rows):
+def write_geojson(rows, path=OUTPUT_GEOJSON, name="emergency_medical_services"):
     features = []
     for index, row in enumerate(rows, start=1):
         lng = parse_coordinate(row["lng"])
@@ -222,12 +229,12 @@ def write_geojson(rows):
             }
         )
 
-    OUTPUT_GEOJSON.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_GEOJSON.write_text(
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
         json.dumps(
             {
                 "type": "FeatureCollection",
-                "name": "emergency_medical_services",
+                "name": name,
                 "features": features,
             },
             ensure_ascii=False,
@@ -245,10 +252,12 @@ def main():
 
     write_csv(OUTPUT_CSV, rows)
     write_geojson(rows)
+    write_geojson(taipei, OUTPUT_TAIPEI_GEOJSON, "emergency_medical_services_taipei")
 
     missing_coordinates = sum(1 for row in rows if not row["lng"] or not row["lat"])
     print(f"{OUTPUT_CSV}: {len(rows)}")
     print(f"{OUTPUT_GEOJSON}: {len(rows) - missing_coordinates}")
+    print(f"{OUTPUT_TAIPEI_GEOJSON}: {len(taipei)}")
     print(f"臺北市: {len(taipei)}")
     print(f"新北市: {len(new_taipei)}")
     print(f"未取得經緯度: {missing_coordinates}")
