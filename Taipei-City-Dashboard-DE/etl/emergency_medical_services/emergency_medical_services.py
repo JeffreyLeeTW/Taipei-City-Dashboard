@@ -1,4 +1,5 @@
 """清洗雙北急救責任醫院名冊，補上經緯度後輸出 CSV。"""
+import json
 import os
 import re
 import unicodedata
@@ -10,8 +11,17 @@ import pandas as pd
 import requests
 
 BASE_DIR = Path(__file__).parent
+REPO_DIR = BASE_DIR.parents[2]
 ENV_FILE = BASE_DIR / ".env"
 OUTPUT_CSV = BASE_DIR / "emergency_medical_services.csv"
+OUTPUT_GEOJSON = (
+    REPO_DIR
+    / "Taipei-City-Dashboard-FE"
+    / "public"
+    / "mapData"
+    / "emergency_medical_services.geojson"
+)
+CREATED_AT = "2026-05-02T00:00:00Z"
 
 TAIPEI_API_URL = (
     "https://data.taipei/api/v1/dataset/"
@@ -43,6 +53,8 @@ CHINESE_NUMBERS = {
 ARABIC_NUMBERS = {value: key for key, value in CHINESE_NUMBERS.items()}
 
 OUTPUT_COLUMNS = [
+    "id",
+    "created_at",
     "city",
     "seqno",
     "hosp_id",
@@ -448,6 +460,46 @@ def add_coordinates(data):
     return data
 
 
+def write_geojson(data):
+    features = []
+    for _, row in data.iterrows():
+        lng = pd.to_numeric(row["lng"], errors="coerce")
+        lat = pd.to_numeric(row["lat"], errors="coerce")
+        if pd.isna(lng) or pd.isna(lat):
+            continue
+
+        properties = {
+            column: (None if pd.isna(row[column]) else row[column])
+            for column in OUTPUT_COLUMNS
+            if column not in {"lng", "lat"}
+        }
+        properties["lng"] = float(lng)
+        properties["lat"] = float(lat)
+
+        features.append(
+            {
+                "type": "Feature",
+                "id": int(row["id"]),
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [float(lng), float(lat)],
+                },
+                "properties": properties,
+            }
+        )
+
+    geojson = {
+        "type": "FeatureCollection",
+        "name": "emergency_medical_services",
+        "features": features,
+    }
+    OUTPUT_GEOJSON.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT_GEOJSON.write_text(
+        json.dumps(geojson, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
 def get_taipei_data():
     response = requests.get(TAIPEI_API_URL, timeout=60)
     response.raise_for_status()
@@ -471,7 +523,7 @@ def get_taipei_data():
 
     data = data.drop(columns=["_id", "_importdate"], errors="ignore")
 
-    return data[OUTPUT_COLUMNS]
+    return data[[column for column in OUTPUT_COLUMNS if column in data.columns]]
 
 
 def get_new_taipei_data():
@@ -489,13 +541,17 @@ def get_new_taipei_data():
     data["district_code"] = ""
     data["district"] = data["address"].map(extract_district)
 
-    return data[OUTPUT_COLUMNS]
+    return data[[column for column in OUTPUT_COLUMNS if column in data.columns]]
 
 
 def main():
     taipei = get_taipei_data()
     new_taipei = get_new_taipei_data()
     emergency_medical_services = pd.concat([taipei, new_taipei], ignore_index=True)
+    emergency_medical_services.insert(
+        0, "id", range(1, len(emergency_medical_services) + 1)
+    )
+    emergency_medical_services.insert(1, "created_at", CREATED_AT)
 
     text_columns = [
         "seqno",
@@ -515,8 +571,10 @@ def main():
 
     emergency_medical_services = add_coordinates(emergency_medical_services)
     emergency_medical_services.to_csv(OUTPUT_CSV, index=False, encoding="utf-8-sig")
+    write_geojson(emergency_medical_services)
 
     print(f"{OUTPUT_CSV}: {len(emergency_medical_services)}")
+    print(f"{OUTPUT_GEOJSON}: {len(emergency_medical_services)}")
     print(f"臺北市: {len(taipei)}")
     print(f"新北市: {len(new_taipei)}")
     missing_coordinates = emergency_medical_services[

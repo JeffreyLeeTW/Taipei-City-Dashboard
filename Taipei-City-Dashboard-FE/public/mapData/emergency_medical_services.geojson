@@ -1,0 +1,1005 @@
+{
+  "type": "FeatureCollection",
+  "name": "emergency_medical_services",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.518555,
+          25.040776
+        ]
+      },
+      "properties": {
+        "id": 1,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "1",
+        "hosp_id": null,
+        "district_code": "63000050",
+        "hosp_name": "國立台灣大學醫學院附設醫院",
+        "district": "中正區",
+        "address": "臺北市中正區中山南路７號",
+        "tel": "(02)23123456",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.518555,
+        "lat": 25.040776
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.511534,
+          25.024279
+        ]
+      },
+      "properties": {
+        "id": 2,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "2",
+        "hosp_id": null,
+        "district_code": "63000050",
+        "hosp_name": "臺北市立聯合醫院（和平婦幼院區）",
+        "district": "中正區",
+        "address": "臺北市中正區中華路二段３３號",
+        "tel": "(02)23889595",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.511534,
+        "lat": 25.024279
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.494347,
+          25.027645
+        ]
+      },
+      "properties": {
+        "id": 3,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "3",
+        "hosp_id": null,
+        "district_code": "63000070",
+        "hosp_name": "西園醫院",
+        "district": "萬華區",
+        "address": "臺北市萬華區西園路二段２７６號",
+        "tel": "(02)23076968",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.494347,
+        "lat": 25.027645
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.508885,
+          25.050693
+        ]
+      },
+      "properties": {
+        "id": 4,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "4",
+        "hosp_id": null,
+        "district_code": "63000060",
+        "hosp_name": "臺北市立聯合醫院（中興院區）",
+        "district": "大同區",
+        "address": "臺北市大同區鄭州路１４５號",
+        "tel": "(02)25523234",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.508885,
+        "lat": 25.050693
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.523114,
+          25.116369
+        ]
+      },
+      "properties": {
+        "id": 5,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "5",
+        "hosp_id": null,
+        "district_code": "63000120",
+        "hosp_name": "振興醫療財團法人振興醫院",
+        "district": "北投區",
+        "address": "臺北市北投區振興街４５號",
+        "tel": "(02)28264400",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.523114,
+        "lat": 25.116369
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 6,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.522479,
+          25.120637
+        ]
+      },
+      "properties": {
+        "id": 6,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "6",
+        "hosp_id": null,
+        "district_code": "63000120",
+        "hosp_name": "臺北榮民總醫院",
+        "district": "北投區",
+        "address": "臺北市北投區石牌路二段２０１號",
+        "tel": "(02)28712121",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.522479,
+        "lat": 25.120637
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 7,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.557692,
+          25.049904
+        ]
+      },
+      "properties": {
+        "id": 7,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "7",
+        "hosp_id": null,
+        "district_code": "63000010",
+        "hosp_name": "博仁綜合醫院",
+        "district": "松山區",
+        "address": "臺北市松山區光復北路６６號",
+        "tel": "(02)25786677",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.557692,
+        "lat": 25.049904
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.557702,
+          25.05394
+        ]
+      },
+      "properties": {
+        "id": 8,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "8",
+        "hosp_id": null,
+        "district_code": "63000010",
+        "hosp_name": "三軍總醫院松山分院附設民眾診療服務處",
+        "district": "松山區",
+        "address": "臺北市松山區健康路１３１號",
+        "tel": "(02)27642151",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.557702,
+        "lat": 25.05394
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 9,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.547274,
+          25.048054
+        ]
+      },
+      "properties": {
+        "id": 9,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "9",
+        "hosp_id": null,
+        "district_code": "63000010",
+        "hosp_name": "基督復臨安息日會醫療財團法人臺安醫院",
+        "district": "松山區",
+        "address": "臺北市松山區八德路二段４２４號",
+        "tel": "(02)27718151",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.547274,
+        "lat": 25.048054
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 10,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.563635,
+          25.026639
+        ]
+      },
+      "properties": {
+        "id": 10,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "10",
+        "hosp_id": null,
+        "district_code": "63000020",
+        "hosp_name": "臺北醫學大學附設醫院",
+        "district": "信義區",
+        "address": "臺北市信義區吳興街２５２號",
+        "tel": "(02)27372181",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.563635,
+        "lat": 25.026639
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 11,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.52285,
+          25.060446
+        ]
+      },
+      "properties": {
+        "id": 11,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "11",
+        "hosp_id": null,
+        "district_code": "63000040",
+        "hosp_name": "財團法人臺灣基督長老教會馬偕紀念社會事業基金會馬偕紀念醫院",
+        "district": "中山區",
+        "address": "臺北市中山區中山北路二段９２號",
+        "tel": "(02)25433535",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.52285,
+        "lat": 25.060446
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 12,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.557849,
+          25.000833
+        ]
+      },
+      "properties": {
+        "id": 12,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "12",
+        "hosp_id": null,
+        "district_code": "63000080",
+        "hosp_name": "臺北市立萬芳醫院",
+        "district": "文山區",
+        "address": "臺北市文山區興隆路三段１１１號",
+        "tel": "(02)29307930",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.557849,
+        "lat": 25.000833
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 13,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.586154,
+          25.046508
+        ]
+      },
+      "properties": {
+        "id": 13,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "13",
+        "hosp_id": null,
+        "district_code": "63000090",
+        "hosp_name": "臺北市立聯合醫院（忠孝院區）",
+        "district": "南港區",
+        "address": "臺北市南港區同德路８７號",
+        "tel": "(02)27861288",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.586154,
+        "lat": 25.046508
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 14,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.554474,
+          25.038857
+        ]
+      },
+      "properties": {
+        "id": 14,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "14",
+        "hosp_id": null,
+        "district_code": "63000030",
+        "hosp_name": "臺北市立聯合醫院（仁愛院區）",
+        "district": "大安區",
+        "address": "臺北市大安區仁愛路四段１０號",
+        "tel": "(02)27093600",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.554474,
+        "lat": 25.038857
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 15,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.552799,
+          25.037179
+        ]
+      },
+      "properties": {
+        "id": 15,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "15",
+        "hosp_id": null,
+        "district_code": "63000030",
+        "hosp_name": "國泰醫療財團法人國泰綜合醫院",
+        "district": "大安區",
+        "address": "臺北市大安區仁愛路四段２６６巷６號",
+        "tel": "(02)27082121",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.552799,
+        "lat": 25.037179
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 16,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.520986,
+          25.09625
+        ]
+      },
+      "properties": {
+        "id": 16,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "16",
+        "hosp_id": null,
+        "district_code": "63000110",
+        "hosp_name": "新光醫療財團法人新光吳火獅紀念醫院",
+        "district": "士林區",
+        "address": "臺北市士林區文昌路９５號",
+        "tel": "(02)28332211",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.520986,
+        "lat": 25.09625
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 17,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.531563,
+          25.105195
+        ]
+      },
+      "properties": {
+        "id": 17,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "17",
+        "hosp_id": null,
+        "district_code": "63000110",
+        "hosp_name": "臺北市立聯合醫院（陽明院區）",
+        "district": "士林區",
+        "address": "臺北市士林區雨聲街１０５號",
+        "tel": "(02)28353456",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.531563,
+        "lat": 25.105195
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 18,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.591979,
+          25.071802
+        ]
+      },
+      "properties": {
+        "id": 18,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "臺北市",
+        "seqno": "18",
+        "hosp_id": null,
+        "district_code": "63000100",
+        "hosp_name": "三軍總醫院附設民眾診療服務處",
+        "district": "內湖區",
+        "address": "臺北市內湖區成功路二段３２５號",
+        "tel": "(02)87923311",
+        "yyyroc": null,
+        "remark": null,
+        "lng": 121.591979,
+        "lat": 25.071802
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 19,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.451983,
+          24.997441
+        ]
+      },
+      "properties": {
+        "id": 19,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "1",
+        "hosp_id": "1131010011",
+        "district_code": null,
+        "hosp_name": "醫療財團法人徐元智先生醫藥基金會亞東紀念醫院",
+        "district": "板橋區",
+        "address": "新北市板橋區南雅南路2段21號",
+        "tel": "(02)89667000",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.451983,
+        "lat": 24.997441
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 20,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.460499,
+          25.139535
+        ]
+      },
+      "properties": {
+        "id": 20,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "2",
+        "hosp_id": "1131100010",
+        "district_code": null,
+        "hosp_name": "台灣基督長老教會馬偕醫療財團法人淡水馬偕紀念醫院",
+        "district": "淡水區",
+        "address": "新北市淡水區民生路45號",
+        "tel": "(02)28094661",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.460499,
+        "lat": 25.139535
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 21,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.49404,
+          24.993751
+        ]
+      },
+      "properties": {
+        "id": 21,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "3",
+        "hosp_id": "1331040513",
+        "district_code": null,
+        "hosp_name": "衛生福利部雙和醫院（委託臺北醫學大學興建經營）",
+        "district": "中和區",
+        "address": "新北市中和區中正路291號",
+        "tel": "(02)22490088",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.49404,
+        "lat": 24.993751
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 22,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.535808,
+          24.985781
+        ]
+      },
+      "properties": {
+        "id": 22,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "4",
+        "hosp_id": "1131050515",
+        "district_code": null,
+        "hosp_name": "佛教慈濟醫療財團法人台北慈濟醫院",
+        "district": "新店區",
+        "address": "新北市新店區建國路289號",
+        "tel": "(02)66289779",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.535808,
+        "lat": 24.985781
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 23,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.535551,
+          24.97612
+        ]
+      },
+      "properties": {
+        "id": 23,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "5",
+        "hosp_id": "1231050017",
+        "district_code": null,
+        "hosp_name": "天主教耕莘醫療財團法人耕莘醫院",
+        "district": "新店區",
+        "address": "新北市新店區中正路362號",
+        "tel": "(02)22193391",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.535551,
+        "lat": 24.97612
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 24,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.430799,
+          25.039676
+        ]
+      },
+      "properties": {
+        "id": 24,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "6",
+        "hosp_id": "1331160010",
+        "district_code": null,
+        "hosp_name": "輔仁大學學校財團法人輔仁大學附設醫院",
+        "district": "泰山區",
+        "address": "新北市泰山區貴子路69號",
+        "tel": "(02)85128888",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.430799,
+        "lat": 25.039676
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 25,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.44873,
+          24.976437
+        ]
+      },
+      "properties": {
+        "id": 25,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "7",
+        "hosp_id": "1131130018",
+        "district_code": null,
+        "hosp_name": "新北市立土城醫院（委託長庚醫療財團法人興建經營）",
+        "district": "土城區",
+        "address": "新北市土城區金城路2段6號",
+        "tel": "(02)22630588",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.44873,
+        "lat": 24.976437
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 26,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.459623,
+          25.043241
+        ]
+      },
+      "properties": {
+        "id": 26,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "8",
+        "hosp_id": "131060029",
+        "district_code": null,
+        "hosp_name": "衛生福利部臺北醫院",
+        "district": "新莊區",
+        "address": "新北市新莊區思源路127號",
+        "tel": "(02)22765566",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.459623,
+        "lat": 25.043241
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 27,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.363008,
+          24.938386
+        ]
+      },
+      "properties": {
+        "id": 27,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "9",
+        "hosp_id": "1131090019",
+        "district_code": null,
+        "hosp_name": "行天宮醫療志業醫療財團法人恩主公醫院",
+        "district": "三峽區",
+        "address": "新北市三峽區復興路399號",
+        "tel": "(02)26723456",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.363008,
+        "lat": 24.938386
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 28,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.661084,
+          25.072872
+        ]
+      },
+      "properties": {
+        "id": 28,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "10",
+        "hosp_id": "1131110516",
+        "district_code": null,
+        "hosp_name": "國泰醫療財團法人汐止國泰綜合醫院",
+        "district": "汐止區",
+        "address": "新北市汐止區建成路59巷2號",
+        "tel": "(02)26482121",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.661084,
+        "lat": 25.072872
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 29,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.490202,
+          25.061139
+        ]
+      },
+      "properties": {
+        "id": 29,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "11",
+        "hosp_id": "131020016",
+        "district_code": null,
+        "hosp_name": "新北市立聯合醫院（三重院區）",
+        "district": "三重區",
+        "address": "新北市三重區新北大道一段3號",
+        "tel": "(02)29829111",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.490202,
+        "lat": 25.061139
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 30,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.518431,
+          25.012126
+        ]
+      },
+      "properties": {
+        "id": 30,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "12",
+        "hosp_id": "1231030015",
+        "district_code": null,
+        "hosp_name": "天主教耕莘醫療財團法人永和耕莘醫院",
+        "district": "永和區",
+        "address": "新北市永和區中興街80號",
+        "tel": "(02)29286060",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.518431,
+        "lat": 25.012126
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 31,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.504537,
+          24.953977
+        ]
+      },
+      "properties": {
+        "id": 31,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "13",
+        "hosp_id": "1231050017",
+        "district_code": null,
+        "hosp_name": "天主教耕莘醫療財團法人耕莘醫院安康院區",
+        "district": "新店區",
+        "address": "新北市新店區車子路15號",
+        "tel": "(02)22123066",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.504537,
+        "lat": 24.953977
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 32,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.628398,
+          25.21965
+        ]
+      },
+      "properties": {
+        "id": 32,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "14",
+        "hosp_id": "431270012",
+        "district_code": null,
+        "hosp_name": "國立臺灣大學醫學院附設醫院金山分院",
+        "district": "金山區",
+        "address": "新北市金山區五湖里玉爐路7號",
+        "tel": "(02)24989898",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.628398,
+        "lat": 25.21965
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 33,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.409851,
+          25.021622
+        ]
+      },
+      "properties": {
+        "id": 33,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "15",
+        "hosp_id": "131060010",
+        "district_code": null,
+        "hosp_name": "衛生福利部樂生醫院",
+        "district": "新莊區",
+        "address": "新北市新莊區中正路794號",
+        "tel": "(02)82006600",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.409851,
+        "lat": 25.021622
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 34,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.80217,
+          25.108602
+        ]
+      },
+      "properties": {
+        "id": 34,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "16",
+        "hosp_id": "1531120038",
+        "district_code": null,
+        "hosp_name": "瑞芳礦工醫院",
+        "district": "瑞芳區",
+        "address": "新北市瑞芳區一坑路71之2號",
+        "tel": "(02)24974101",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.80217,
+        "lat": 25.108602
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 35,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.420039,
+          24.987188
+        ]
+      },
+      "properties": {
+        "id": 35,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "17",
+        "hosp_id": "1531071030",
+        "district_code": null,
+        "hosp_name": "仁愛醫院",
+        "district": "樹林區",
+        "address": "新北市樹林區文化街9號",
+        "tel": "(02)26834567",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.420039,
+        "lat": 24.987188
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 36,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.434313,
+          25.021504
+        ]
+      },
+      "properties": {
+        "id": 36,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "18",
+        "hosp_id": "1531061249",
+        "district_code": null,
+        "hosp_name": "新泰綜合醫院",
+        "district": "新莊區",
+        "address": "新北市新莊區新樹路176號",
+        "tel": "(02)29962121",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.434313,
+        "lat": 25.021504
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 37,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.48378,
+          25.053965
+        ]
+      },
+      "properties": {
+        "id": 37,
+        "created_at": "2026-05-02T00:00:00Z",
+        "city": "新北市",
+        "seqno": "19",
+        "hosp_id": "1531021192",
+        "district_code": null,
+        "hosp_name": "宏仁醫院",
+        "district": "三重區",
+        "address": "新北市三重區水漾路一段158號",
+        "tel": "(02)29788877",
+        "yyyroc": "115",
+        "remark": "NIL",
+        "lng": 121.48378,
+        "lat": 25.053965
+      }
+    }
+  ]
+}
