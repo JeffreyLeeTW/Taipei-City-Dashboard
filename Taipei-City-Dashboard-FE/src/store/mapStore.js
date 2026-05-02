@@ -174,6 +174,7 @@ export const useMapStore = defineStore("map", {
 		// Due to performance concerns, Taipei 3D Buildings won't be added in the mobile version
 		initializeBasicLayers() {
 			const authStore = useAuthStore();
+			const mapboxTileUrl = import.meta.env.VITE_MAPBOXTILE;
 			const allowedDomains = [
 				"citydashboard.taipei",
 				"test-citydashboard.taipei",
@@ -206,11 +207,11 @@ export const useMapStore = defineStore("map", {
 						.addLayer(metroTaipeiVillage);
 				});
 			// Taipei 3D Buildings
-			if (!authStore.isMobileDevice) {
+			if (!authStore.isMobileDevice && mapboxTileUrl) {
 				this.map
 					.addSource("taipei_building_3d_source", {
 						type: "vector",
-						url: import.meta.env.VITE_MAPBOXTILE,
+						url: mapboxTileUrl,
 					})
 					.addLayer(TaipeiBuilding);
 			}

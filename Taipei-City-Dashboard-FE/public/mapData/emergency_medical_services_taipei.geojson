@@ -1,0 +1,366 @@
+{
+  "type": "FeatureCollection",
+  "name": "emergency_medical_services_taipei",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.518555,
+          25.040776
+        ]
+      },
+      "properties": {
+        "hospital_name": "國立台灣大學醫學院附設醫院",
+        "city": "臺北市",
+        "district": "中正區",
+        "address": "臺北市中正區中山南路７號",
+        "tel": "(02)23123456",
+        "lng": 121.518555,
+        "lat": 25.040776
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.511534,
+          25.024279
+        ]
+      },
+      "properties": {
+        "hospital_name": "臺北市立聯合醫院（和平婦幼院區）",
+        "city": "臺北市",
+        "district": "中正區",
+        "address": "臺北市中正區中華路二段３３號",
+        "tel": "(02)23889595",
+        "lng": 121.511534,
+        "lat": 25.024279
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.494347,
+          25.027645
+        ]
+      },
+      "properties": {
+        "hospital_name": "西園醫院",
+        "city": "臺北市",
+        "district": "萬華區",
+        "address": "臺北市萬華區西園路二段２７６號",
+        "tel": "(02)23076968",
+        "lng": 121.494347,
+        "lat": 25.027645
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.508885,
+          25.050693
+        ]
+      },
+      "properties": {
+        "hospital_name": "臺北市立聯合醫院（中興院區）",
+        "city": "臺北市",
+        "district": "大同區",
+        "address": "臺北市大同區鄭州路１４５號",
+        "tel": "(02)25523234",
+        "lng": 121.508885,
+        "lat": 25.050693
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.523114,
+          25.116369
+        ]
+      },
+      "properties": {
+        "hospital_name": "振興醫療財團法人振興醫院",
+        "city": "臺北市",
+        "district": "北投區",
+        "address": "臺北市北投區振興街４５號",
+        "tel": "(02)28264400",
+        "lng": 121.523114,
+        "lat": 25.116369
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 6,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.522479,
+          25.120637
+        ]
+      },
+      "properties": {
+        "hospital_name": "臺北榮民總醫院",
+        "city": "臺北市",
+        "district": "北投區",
+        "address": "臺北市北投區石牌路二段２０１號",
+        "tel": "(02)28712121",
+        "lng": 121.522479,
+        "lat": 25.120637
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 7,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.557692,
+          25.049904
+        ]
+      },
+      "properties": {
+        "hospital_name": "博仁綜合醫院",
+        "city": "臺北市",
+        "district": "松山區",
+        "address": "臺北市松山區光復北路６６號",
+        "tel": "(02)25786677",
+        "lng": 121.557692,
+        "lat": 25.049904
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.557702,
+          25.05394
+        ]
+      },
+      "properties": {
+        "hospital_name": "三軍總醫院松山分院附設民眾診療服務處",
+        "city": "臺北市",
+        "district": "松山區",
+        "address": "臺北市松山區健康路１３１號",
+        "tel": "(02)27642151",
+        "lng": 121.557702,
+        "lat": 25.05394
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 9,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.547274,
+          25.048054
+        ]
+      },
+      "properties": {
+        "hospital_name": "基督復臨安息日會醫療財團法人臺安醫院",
+        "city": "臺北市",
+        "district": "松山區",
+        "address": "臺北市松山區八德路二段４２４號",
+        "tel": "(02)27718151",
+        "lng": 121.547274,
+        "lat": 25.048054
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 10,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.563635,
+          25.026639
+        ]
+      },
+      "properties": {
+        "hospital_name": "臺北醫學大學附設醫院",
+        "city": "臺北市",
+        "district": "信義區",
+        "address": "臺北市信義區吳興街２５２號",
+        "tel": "(02)27372181",
+        "lng": 121.563635,
+        "lat": 25.026639
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 11,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.52285,
+          25.060446
+        ]
+      },
+      "properties": {
+        "hospital_name": "財團法人臺灣基督長老教會馬偕紀念社會事業基金會馬偕紀念醫院",
+        "city": "臺北市",
+        "district": "中山區",
+        "address": "臺北市中山區中山北路二段９２號",
+        "tel": "(02)25433535",
+        "lng": 121.52285,
+        "lat": 25.060446
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 12,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.557849,
+          25.000833
+        ]
+      },
+      "properties": {
+        "hospital_name": "臺北市立萬芳醫院",
+        "city": "臺北市",
+        "district": "文山區",
+        "address": "臺北市文山區興隆路三段１１１號",
+        "tel": "(02)29307930",
+        "lng": 121.557849,
+        "lat": 25.000833
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 13,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.586154,
+          25.046508
+        ]
+      },
+      "properties": {
+        "hospital_name": "臺北市立聯合醫院（忠孝院區）",
+        "city": "臺北市",
+        "district": "南港區",
+        "address": "臺北市南港區同德路８７號",
+        "tel": "(02)27861288",
+        "lng": 121.586154,
+        "lat": 25.046508
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 14,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.554474,
+          25.038857
+        ]
+      },
+      "properties": {
+        "hospital_name": "臺北市立聯合醫院（仁愛院區）",
+        "city": "臺北市",
+        "district": "大安區",
+        "address": "臺北市大安區仁愛路四段１０號",
+        "tel": "(02)27093600",
+        "lng": 121.554474,
+        "lat": 25.038857
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 15,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.552799,
+          25.037179
+        ]
+      },
+      "properties": {
+        "hospital_name": "國泰醫療財團法人國泰綜合醫院",
+        "city": "臺北市",
+        "district": "大安區",
+        "address": "臺北市大安區仁愛路四段２６６巷６號",
+        "tel": "(02)27082121",
+        "lng": 121.552799,
+        "lat": 25.037179
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 16,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.520986,
+          25.09625
+        ]
+      },
+      "properties": {
+        "hospital_name": "新光醫療財團法人新光吳火獅紀念醫院",
+        "city": "臺北市",
+        "district": "士林區",
+        "address": "臺北市士林區文昌路９５號",
+        "tel": "(02)28332211",
+        "lng": 121.520986,
+        "lat": 25.09625
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 17,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.531563,
+          25.105195
+        ]
+      },
+      "properties": {
+        "hospital_name": "臺北市立聯合醫院（陽明院區）",
+        "city": "臺北市",
+        "district": "士林區",
+        "address": "臺北市士林區雨聲街１０５號",
+        "tel": "(02)28353456",
+        "lng": 121.531563,
+        "lat": 25.105195
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 18,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.591979,
+          25.071802
+        ]
+      },
+      "properties": {
+        "hospital_name": "三軍總醫院附設民眾診療服務處",
+        "city": "臺北市",
+        "district": "內湖區",
+        "address": "臺北市內湖區成功路二段３２５號",
+        "tel": "(02)87923311",
+        "lng": 121.591979,
+        "lat": 25.071802
+      }
+    }
+  ]
+}
