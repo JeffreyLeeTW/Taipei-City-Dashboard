@@ -1,0 +1,180 @@
+package middleware
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"runtime/debug"
+	"time"
+
+	"github.com/gin-gonic/gin"
+
+	bufferpool "TaipeiCityDashboardBE/app/lib/bufferpool"
+	responsewriter "TaipeiCityDashboardBE/app/lib/responsewriter"
+)
+
+type PanicInfo struct {
+	Value interface{}
+	Stack []byte
+}
+
+// use reusable buffer pool for timeout response writer to storing the current response of the handlers
+var timeoutReusableBufferPool *bufferpool.ReusableBufferPool = bufferpool.NewReusableBufferPool()
+
+func TimeoutMiddleware(timeout time.Duration) gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		originalWriter := ctx.Writer
+
+		currentBufferPool := timeoutReusableBufferPool.Get()
+		currentBufferPool.Reset()
+		defer func() {
+			currentBufferPool.Reset()
+			timeoutReusableBufferPool.Put(currentBufferPool)
+		}()
+
+		writer := responsewriter.NewResponseWriter(originalWriter, currentBufferPool)
+		ctx.Writer = writer
+
+		ctxCopy := ctx.Copy()
+		ctxCopy.Writer = writer
+
+		timeoutCtx, cancel := context.WithTimeout(ctx.Request.Context(), timeout)
+		defer cancel()
+
+		ctxCopy.Request = ctxCopy.Request.WithContext(timeoutCtx)
+
+		// ctx     uses originalWriter
+		// ctxCopy uses writer (passing to the next handlers to make them write response in the buffer)
+
+		done := make(chan struct{}, 1)
+		panicChannel := make(chan PanicInfo, 1)
+
+		go func() {
+			defer func() {
+				if p := recover(); p != nil {
+					panicChannel <- PanicInfo{
+						Value: p,
+						Stack: debug.Stack(),
+					}
+				}
+			}()
+
+			ctx.Next()
+			done <- struct{}{}
+		}()
+
+		select {
+		case panicInfo := <-panicChannel:
+			writer.Mutex.Lock()
+			writer.FreeBuffer() // clear the buffer, this will destroy the context field stored by other middlewares
+			writer.Mutex.Unlock()
+			ctx.Writer = originalWriter
+
+			if gin.IsDebugging() {
+				ctx.Error(fmt.Errorf("%v", panicInfo.Value))
+				ctx.Writer.WriteHeader(http.StatusInternalServerError)
+				fmt.Fprintf(ctx.Writer, "panic caught: %v\n", panicInfo.Value)
+				ctx.Writer.Write([]byte("Panic stack trace:\n"))
+				ctx.Writer.Write(panicInfo.Stack)
+			}
+
+			ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+				"success":   false,
+				"data":      nil,
+				"error": fmt.Sprintf("panic recovered in timeout middleware: %v\nStack: %s\n", panicInfo.Value, string(panicInfo.Stack)),
+			})
+		case <-done:
+			writer.Mutex.Lock()
+			defer writer.Mutex.Unlock()
+			if writer.IsTimeout || writer.ResponseWriter.Written() {
+				return
+			}
+
+			destination := writer.ResponseWriter.Header()
+			for key, val := range writer.Headers {
+				destination[key] = val
+			}
+
+			if writer.Code != 0 {
+				writer.ResponseWriter.WriteHeader(writer.Code)
+			}
+
+			if currentBufferPool.Len() > 0 {
+				if _, err := writer.ResponseWriter.Write(currentBufferPool.Bytes()); err != nil {
+					ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+						"success":   false,
+						"data":      nil,
+						"error": fmt.Sprintf("panic happened in timeout middleware, failed to write response by response writer: %s", err),
+					})
+				}
+			}
+
+			return
+		case <-timeoutCtx.Done():
+			// logs.Alert(traces.GetTrace(0).FileLineString(), "Timeout (timeoutCtx.Done())")
+			writer.Mutex.Lock()
+			writer.IsTimeout = true
+			writer.FreeBuffer() // clear the buffer, this will destroy the context field stored by other middlewares
+			writer.Mutex.Unlock()
+
+			if !writer.ResponseWriter.Written() {
+				writer.ResponseWriter.Header().Set("X-Request-Timeout", timeout.String())
+				writer.ResponseWriter.WriteHeader(http.StatusRequestTimeout)
+				timeoutResponseBody, err := json.Marshal(gin.H{
+					"success": false, 
+					"data": nil, 
+					"error": fmt.Sprintf("timeout in %d", timeout),
+				})
+				if err != nil {
+					ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+						"success":   false,
+						"data":      nil,
+						"error": fmt.Sprintf("failed to marshal timeout response body", timeout, err),
+					})
+				}
+				if _, err := writer.ResponseWriter.Write(timeoutResponseBody); err != nil {
+					ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+						"success":   false,
+						"data":      nil,
+						"error": fmt.Sprintf("panic happened in timeout middleware, failed to write response by response writer: %s", err),
+					})
+				}
+			}
+
+			return
+		case <-time.After(timeout):
+			// logs.Alert(traces.GetTrace(0).FileLineString(), "Timeout (time.After)")
+			writer.Mutex.Lock()
+			writer.IsTimeout = true
+			writer.FreeBuffer() // clear the buffer, this will destroy the context field stored by other middlewares
+			writer.Mutex.Unlock()
+
+			if !writer.ResponseWriter.Written() {
+				writer.ResponseWriter.Header().Set("X-Request-Timeout", timeout.String())
+				writer.ResponseWriter.WriteHeader(http.StatusRequestTimeout)
+				timeoutResponseBody, err := json.Marshal(gin.H{
+					"success": false, 
+					"data": nil, 
+					"error": fmt.Sprintf("timeout in %d", timeout),
+				})
+				if err != nil {
+					ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+						"success":   false,
+						"data":      nil,
+						"error": fmt.Sprintf("failed to marshal timeout response body", timeout, err),
+					})
+				}
+				if _, err := writer.ResponseWriter.Write(timeoutResponseBody); err != nil {
+					ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+						"success":   false,
+						"data":      nil,
+						"error": fmt.Sprintf("panic happened in timeout middleware, failed to write response by response writer: %s", err),
+					})
+				}
+			}
+
+			return
+		}
+	}
+}
