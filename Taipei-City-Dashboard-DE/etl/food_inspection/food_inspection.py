@@ -1,16 +1,10 @@
-"""抓取雙北食品抽驗資料，清洗後輸出 2023-2025 合格與不合格業者 CSV。"""
-import sys
+"""從 API 取得雙北食品抽驗資料，輸出指定 CSV 格式。"""
+import csv
+import json
+from collections import OrderedDict
+from datetime import datetime
 from pathlib import Path
-
-import pandas as pd
-import requests
-
-DE_DIR = Path(__file__).resolve().parents[2]
-DAGS_DIR = DE_DIR / "dags"
-if str(DAGS_DIR) not in sys.path:
-    sys.path.insert(0, str(DAGS_DIR))
-
-from utils.transform_time import convert_str_to_time_format  # noqa: E402
+from urllib.request import Request, urlopen
 
 BASE_DIR = Path(__file__).parent
 OUTPUT_CSV = BASE_DIR / "food_inspection.csv"
@@ -23,13 +17,11 @@ NEW_TAIPEI_API_URL = (
 
 START_DATE = "2023-01-01"
 END_DATE = "2025-12-31"
-FAILED_PATTERN = "不符合規定|不合格"
-CREATED_AT = "2026-05-02T00:00:00Z"
 
 TAIPEI_COLUMNS = [
-    "source_id",
+    "record_id",
     "inspection_date",
-    "inspection_topic",
+    "inspection_item",
     "food_category",
     "product_name",
     "district",
@@ -38,175 +30,203 @@ TAIPEI_COLUMNS = [
     "violation_detail",
 ]
 
-DETAIL_COLUMNS = [
-    "city",
+OUTPUT_COLUMNS = [
     "record_id",
+    "count",
+    "city",
+    "district",
+    "year",
     "inspection_date",
     "inspection_item",
-    "food_category",
-    "product_name",
     "vendor_name",
-    "district",
     "address",
-    "lng",
-    "lat",
     "result",
     "inspection_status",
     "violation_detail",
     "sampled_place",
 ]
 
+DATE_FORMATS = ("%Y-%m-%d", "%Y/%m/%d", "%Y.%m.%d", "%Y%m%d")
+
 
 def normalize_text(value):
-    if not isinstance(value, str):
-        return value
-    return " ".join(value.split())
+    if value is None:
+        return ""
+    return " ".join(str(value).split())
+
+
+def normalize_city(value):
+    return normalize_text(value).replace("台北市", "臺北市")
+
+
+def request_post_json(url):
+    request = Request(url, data=b"", method="POST")
+    request.add_header("Content-Length", "0")
+    with urlopen(request, timeout=60) as response:
+        return json.loads(response.read().decode("utf-8-sig"))
+
+
+def normalize_date(value):
+    value = normalize_text(value)
+    if not value:
+        return ""
+    for date_format in DATE_FORMATS:
+        try:
+            return datetime.strptime(value, date_format).strftime("%Y-%m-%d")
+        except ValueError:
+            continue
+    return value
+
+
+def within_date_range(value):
+    try:
+        date = datetime.strptime(value, "%Y-%m-%d").date()
+        return (
+            datetime.strptime(START_DATE, "%Y-%m-%d").date()
+            <= date
+            <= datetime.strptime(END_DATE, "%Y-%m-%d").date()
+        )
+    except ValueError:
+        return False
+
+
+def normalize_result(value):
+    value = normalize_text(value)
+    if value.upper() in {"TRUE", "T", "1"} or value == "合格" or ("符合規定" in value and "不符合" not in value):
+        return "TRUE"
+    if value.upper() in {"FALSE", "F", "0"} or "不符合" in value or "不合格" in value:
+        return "FALSE"
+    return value
 
 
 def split_sampled_place(value):
-    """Split values like 'vendor/address' while preserving the original field."""
-    if not isinstance(value, str) or "/" not in value:
+    value = normalize_text(value)
+    if "/" not in value:
         return value, ""
-    vendor, address = value.split("/", 1)
-    return vendor.strip(), address.strip()
+    vender_name, address = value.split("/", 1)
+    return normalize_text(vender_name), normalize_city(address)
 
 
-def filter_inspection_date(data, from_format):
-    data = data.copy()
-    data["inspection_date"] = convert_str_to_time_format(
-        data["inspection_date"],
-        from_format=from_format,
-        output_level="date",
-        output_type="str",
-        errors="coerce",
+def clean_row(row):
+    cleaned = {column: normalize_text(row.get(column, "")) for column in OUTPUT_COLUMNS}
+    cleaned["city"] = normalize_city(cleaned["city"])
+    cleaned["address"] = normalize_city(cleaned["address"])
+    cleaned["inspection_date"] = normalize_date(cleaned["inspection_date"])
+    cleaned["year"] = cleaned["inspection_date"][:4]
+    cleaned["result"] = normalize_result(cleaned["result"])
+    cleaned["inspection_status"] = (
+        "合格" if cleaned["result"] == "TRUE" else
+        "不合格" if cleaned["result"] == "FALSE" else ""
     )
-    return data[
-        pd.to_datetime(data["inspection_date"], errors="coerce").between(
-            pd.Timestamp(START_DATE),
-            pd.Timestamp(END_DATE),
-            inclusive="both",
+    cleaned["sampled_place"] = cleaned["sampled_place"] or (
+        f"{cleaned['vendor_name']}/{cleaned['address']}"
+    )
+    return cleaned
+
+
+def aggregate_rows(rows):
+    grouped = OrderedDict()
+    for row in rows:
+        key = (
+            row["city"],
+            row["district"],
+            row["inspection_date"],
+            row["inspection_item"],
+            row["vendor_name"],
+            row["address"],
+            row["result"],
+            row["violation_detail"],
+            row["sampled_place"],
         )
-    ].copy()
+        if key not in grouped:
+            grouped[key] = row.copy()
+            grouped[key]["count"] = 0
+        grouped[key]["count"] += 1
 
-
-def add_inspection_status(data):
-    data = data.copy()
-    failed = data["result"].astype(str).str.contains(FAILED_PATTERN, na=False)
-    data["inspection_status"] = failed.map({True: "不合格", False: "合格"})
-    return data
+    output = []
+    for row in grouped.values():
+        row["count"] = str(row["count"])
+        output.append(row)
+    return output
 
 
 def get_taipei_data():
-    response = requests.post(
-        TAIPEI_API_URL,
-        headers={"Content-Length": "0"},
-        data=b"",
-        timeout=60,
-    )
-    response.raise_for_status()
-    raw_data = pd.DataFrame(response.json(), columns=TAIPEI_COLUMNS)
+    payload = request_post_json(TAIPEI_API_URL)
+    rows = []
+    for source_values in payload:
+        source = dict(zip(TAIPEI_COLUMNS, source_values))
+        inspection_date = normalize_date(source.get("inspection_date"))
+        if not within_date_range(inspection_date):
+            continue
 
-    data = filter_inspection_date(raw_data, "%Y%m%d")
-    data[["vendor_name", "address"]] = data["sampled_place"].apply(
-        lambda value: pd.Series(split_sampled_place(value))
-    )
-    data = data.rename(
-        columns={
-            "source_id": "record_id",
-            "inspection_topic": "inspection_item",
-        }
-    )
-    data["city"] = "臺北市"
-    data["lng"] = ""
-    data["lat"] = ""
-    data["violation_detail"] = data["violation_detail"].fillna("")
-    data = add_inspection_status(data)
-
-    text_columns = [
-        "record_id",
-        "inspection_item",
-        "food_category",
-        "product_name",
-        "district",
-        "vendor_name",
-        "address",
-        "sampled_place",
-        "result",
-        "inspection_status",
-        "violation_detail",
-    ]
-    for column in text_columns:
-        data[column] = data[column].map(normalize_text)
-
-    return data[DETAIL_COLUMNS]
+        vender_name, address = split_sampled_place(source.get("sampled_place"))
+        rows.append(
+            clean_row(
+                {
+                    "record_id": source.get("record_id"),
+                    "city": "臺北市",
+                    "district": source.get("district"),
+                    "inspection_date": inspection_date,
+                    "inspection_item": source.get("inspection_item"),
+                    "vendor_name": vender_name,
+                    "address": address,
+                    "result": source.get("result"),
+                    "violation_detail": source.get("violation_detail"),
+                    "sampled_place": source.get("sampled_place"),
+                }
+            )
+        )
+    return aggregate_rows(rows)
 
 
 def get_new_taipei_data():
-    response = requests.post(
-        NEW_TAIPEI_API_URL,
-        headers={"Content-Length": "0"},
-        data=b"",
-        timeout=60,
-    )
-    response.raise_for_status()
-    payload = response.json()
+    payload = request_post_json(NEW_TAIPEI_API_URL)
     if not payload.get("success"):
         raise RuntimeError(f"API 回傳失敗: {payload}")
 
-    raw_data = pd.DataFrame(payload["data"])
-    data = raw_data.rename(
-        columns={
-            "SD_StoreID": "record_id",
-            "業者名稱": "vendor_name",
-            "行政區": "district",
-            "地址": "address",
-            "Longitude": "lng",
-            "Latitude": "lat",
-            "抽驗結果": "result",
-            "抽驗日期": "inspection_date",
-            "檢驗項目": "inspection_item",
-        }
-    )
+    rows = []
+    for source in payload["data"]:
+        inspection_date = normalize_date(source.get("抽驗日期"))
+        if not within_date_range(inspection_date):
+            continue
 
-    data = filter_inspection_date(data, "%Y.%m.%d")
-    data["city"] = "新北市"
-    data["food_category"] = ""
-    data["product_name"] = ""
-    data["violation_detail"] = ""
-    data["sampled_place"] = (
-        data["vendor_name"].fillna("") + "/" + data["address"].fillna("")
-    )
-    data = add_inspection_status(data)
+        vender_name = normalize_text(source.get("業者名稱"))
+        address = normalize_city(source.get("地址"))
+        rows.append(
+            clean_row(
+                {
+                    "record_id": source.get("SD_StoreID"),
+                    "city": "新北市",
+                    "district": source.get("行政區"),
+                    "inspection_date": inspection_date,
+                    "inspection_item": source.get("檢驗項目"),
+                    "vendor_name": vender_name,
+                    "address": address,
+                    "result": source.get("抽驗結果"),
+                    "violation_detail": "",
+                    "sampled_place": f"{vender_name}/{address}",
+                }
+            )
+        )
+    return aggregate_rows(rows)
 
-    text_columns = [
-        "record_id",
-        "inspection_item",
-        "vendor_name",
-        "district",
-        "address",
-        "result",
-        "inspection_status",
-        "sampled_place",
-    ]
-    for column in text_columns:
-        data[column] = data[column].map(normalize_text)
 
-    return data[DETAIL_COLUMNS]
+def write_csv(path, rows):
+    with path.open("w", encoding="utf-8-sig", newline="") as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=OUTPUT_COLUMNS)
+        writer.writeheader()
+        writer.writerows(rows)
 
 
 def main():
     taipei = get_taipei_data()
     new_taipei = get_new_taipei_data()
-    food_inspection = pd.concat([taipei, new_taipei], ignore_index=True)
-    food_inspection.insert(0, "id", range(1, len(food_inspection) + 1))
-    food_inspection.insert(1, "created_at", CREATED_AT)
+    rows = taipei + new_taipei
+    write_csv(OUTPUT_CSV, rows)
 
-    food_inspection.to_csv(OUTPUT_CSV, index=False, encoding="utf-8-sig")
-
-    print(f"{OUTPUT_CSV}: {len(food_inspection)}")
+    print(f"{OUTPUT_CSV}: {len(rows)}")
     print(f"臺北市: {len(taipei)}")
     print(f"新北市: {len(new_taipei)}")
-    print(food_inspection.groupby(["city", "inspection_status"]).size())
 
 
 if __name__ == "__main__":
