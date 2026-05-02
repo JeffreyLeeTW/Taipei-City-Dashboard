@@ -20,7 +20,28 @@ const emits = defineEmits([
 	"fly"
 ]);
 
-const chartOptions = ref({
+function getRiskColor(score) {
+	const colors = props.chart_config.color;
+	if (score >= 80) return colors[4] ?? colors[colors.length - 1];
+	if (score >= 60) return colors[3] ?? colors[colors.length - 1];
+	if (score >= 40) return colors[2] ?? colors[colors.length - 1];
+	if (score >= 20) return colors[1] ?? colors[colors.length - 1];
+	return colors[0] ?? "#E8F6EF";
+}
+
+const chartColors = computed(() => {
+	if (props.chart_config?.index !== "food_safety_risk_rank_map") {
+		return [...props.chart_config.color];
+	}
+
+	const data = props.series?.[0]?.data ?? [];
+	if (data.length === 0) {
+		return [...props.chart_config.color];
+	}
+	return data.map((item) => getRiskColor(Number(item.y)));
+});
+
+const chartOptions = computed(() => ({
 	chart: {
 		offsetY: 15,
 		stacked: true,
@@ -28,7 +49,7 @@ const chartOptions = ref({
 			show: false,
 		},
 	},
-	colors: [...props.chart_config.color],
+	colors: chartColors.value,
 	dataLabels: {
 		offsetX: 20,
 		textAnchor: "start",
@@ -95,7 +116,7 @@ const chartOptions = ref({
 			},
 		},
 	},
-});
+}));
 
 const chartHeight = computed(() => {
 	return `${40 + props.series[0].data.length * 30}`;
