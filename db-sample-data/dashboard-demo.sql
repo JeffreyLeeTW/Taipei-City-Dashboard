@@ -586,6 +586,24 @@ CREATE TABLE public.tran_ubike_realtime_new_tpe (
     ogc_fid integer NOT NULL
 );
 
+--
+-- Name: testrkp3049wikf09kjdf; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.testrkp3049wikf09kjdf (
+    data_time timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+    station_uid character varying(50),
+    station_id character varying(50),
+    service_status character varying(10),
+    service_type character varying(10),
+    available_rent_general_bikes integer,
+    available_return_bikes integer,
+    available_rent_electric_bikes integer,
+    tdx_update_time timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+    _ctime timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+    _mtime timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+    ogc_fid integer NOT NULL
+);
 
 --
 -- Name: foodborne_disease_id_seq; Type: SEQUENCE; Schema: public; Owner: -
@@ -630,14 +648,13 @@ CREATE SEQUENCE public.emergency_medical_service_id_seq
 -- Name: foodborne_disease; type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.foodborne_disease
-(
-    id bigint NOT NULL DEFAULT nextval('foodborne_disease_id_seq'::regclass),
+CREATE TABLE public.foodborne_disease (
+    id bigint NOT NULL DEFAULT nextval('public.foodborne_disease_id_seq'::regclass),
     city character varying(5) COLLATE pg_catalog."default" NOT NULL,
     district character varying(20) COLLATE pg_catalog."default" NOT NULL,
     year character(5) COLLATE pg_catalog."default" NOT NULL,
     cases bigint NOT NULL DEFAULT 0,
-    created_at timestamp with time zone NOT NULL DEFAULT now(),
+    created_at timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT foodborne_disease_pkey PRIMARY KEY (id)
 );
 
@@ -645,9 +662,8 @@ CREATE TABLE public.foodborne_disease
 -- Name: food_inspection; type: TABLE; Schema: public; Owner: -
 -- 
 
-CREATE TABLE public.food_inspection
-(
-    id bigint NOT NULL DEFAULT nextval('food_inspection_id_seq'::regclass),
+CREATE TABLE public.food_inspection (
+    id bigint NOT NULL DEFAULT nextval('public.food_inspection_id_seq'::regclass),
     record_id character varying(50) COLLATE pg_catalog."default" NOT NULL,
     count integer NOT NULL DEFAULT 1,
     city character varying(5) COLLATE pg_catalog."default" NOT NULL,
@@ -656,11 +672,11 @@ CREATE TABLE public.food_inspection
     inspection_date character varying(50) COLLATE pg_catalog."default" NOT NULL,
     inspection_item character varying(100) COLLATE pg_catalog."default" NOT NULL,
     vender_name character varying(100) COLLATE pg_catalog."default" NOT NULL,
-    address character varying(200) COLLATE pg_catalog."default" NOT NULL,
+    address character varying(1000) COLLATE pg_catalog."default",
     result boolean NOT NULL,
-    violation_detail character varying(250) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
-    sampled_place character varying(200) COLLATE pg_catalog."default" NOT NULL,
-    created_at timestamp with time zone NOT NULL DEFAULT now(),
+    violation_detail character varying(1000) COLLATE pg_catalog."default",
+    sampled_place character varying(1000) COLLATE pg_catalog."default",
+    created_at timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT food_inspection_pkey PRIMARY KEY (id),
     CONSTRAINT food_inspection_record_id_key UNIQUE (record_id)
 );
@@ -669,9 +685,8 @@ CREATE TABLE public.food_inspection
 -- Name: emergency_medical_service; type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.emergency_medical_service
-(
-    id bigint NOT NULL DEFAULT nextval('emergency_medical_service_id_seq'::regclass),
+CREATE TABLE public.emergency_medical_service (
+    id bigint NOT NULL DEFAULT nextval('public.emergency_medical_service_id_seq'::regclass),
     hospital_name character varying(50) COLLATE pg_catalog."default" NOT NULL,
     city character varying(5) COLLATE pg_catalog."default" NOT NULL,
     district character varying(20) COLLATE pg_catalog."default" NOT NULL,
@@ -679,7 +694,7 @@ CREATE TABLE public.emergency_medical_service
     tel character varying(20) COLLATE pg_catalog."default" NOT NULL,
     lng numeric NOT NULL,
     lat numeric NOT NULL,
-    created_at timestamp with time zone NOT NULL DEFAULT now(),
+    created_at timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT emergency_medical_service_pkey PRIMARY KEY (id)
 );
 
@@ -16499,7 +16514,7 @@ COPY public.foodborne_disease (city, district, year, cases) FROM stdin WITH (FOR
 新北市,鶯歌區,115,1
 \.
 
-COPY public.food_inspection (record_id, count, city, district, year, inspection_date, inspection_item, vender_name, address, result, violation_detail, sampled_place) FROM stdin WITH (FORMAT csv, NULL '');
+COPY public.food_inspection (record_id, count, city, district, year, inspection_date, inspection_item, vender_name, address, result, violation_detail, sampled_place) FROM stdin WITH (FORMAT csv);
 154,2,臺北市,士林區,2025,2025-12-18,湯圓食品、配料、餡料,家福股份有限公司天母中山分公司(市招：market便利購家樂福超市),臺北市士林區中山北路7段113號,TRUE,,家福股份有限公司天母中山分公司(市招：market便利購家樂福超市)/臺北市士林區中山北路7段113號
 156,2,臺北市,士林區,2025,2025-12-18,湯圓食品、配料、餡料,全聯實業股份有限公司天母中山北分公司(市招：全聯福利中心),臺北市士林區中山北路7段154巷6號1、2樓,TRUE,,全聯實業股份有限公司天母中山北分公司(市招：全聯福利中心)/臺北市士林區中山北路7段154巷6號1、2樓
 158,2,臺北市,大安區,2025,2025-12-18,湯圓食品、配料、餡料,蘇媽媽湯圓(市招：蘇媽媽湯圓通化店),臺北市大安區通化街39巷19號,TRUE,,蘇媽媽湯圓(市招：蘇媽媽湯圓通化店)/臺北市大安區通化街39巷19號
@@ -29576,4 +29591,3 @@ CREATE TRIGGER tran_ubike_realtime_new_tpe_mtime BEFORE INSERT OR UPDATE ON publ
 --
 -- PostgreSQL database dump complete
 --
-
