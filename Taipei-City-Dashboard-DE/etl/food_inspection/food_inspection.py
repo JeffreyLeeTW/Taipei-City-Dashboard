@@ -24,6 +24,7 @@ NEW_TAIPEI_API_URL = (
 START_DATE = "2023-01-01"
 END_DATE = "2025-12-31"
 FAILED_PATTERN = "不符合規定|不合格"
+CREATED_AT = "2026-05-02T00:00:00Z"
 
 TAIPEI_COLUMNS = [
     "source_id",
@@ -197,6 +198,8 @@ def main():
     taipei = get_taipei_data()
     new_taipei = get_new_taipei_data()
     food_inspection = pd.concat([taipei, new_taipei], ignore_index=True)
+    food_inspection.insert(0, "id", range(1, len(food_inspection) + 1))
+    food_inspection.insert(1, "created_at", CREATED_AT)
 
     food_inspection.to_csv(OUTPUT_CSV, index=False, encoding="utf-8-sig")
 
