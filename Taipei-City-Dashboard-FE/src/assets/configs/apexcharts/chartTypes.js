@@ -19,7 +19,6 @@ export const chartTypes = {
 	IndicatorChart: "指標圖",
 	MapLegend: "地圖圖例",
 	TextUnitChart: "文字單位圖",
-	FoodSafetyRiskMap: "食安風險地圖",
 };
 
 export const chartsPerDataType = {
@@ -29,7 +28,6 @@ export const chartsPerDataType = {
 		"ColumnChart",
 		"TreemapChart",
 		"DistrictChart",
-		"FoodSafetyRiskMap",
 		"RadarChart",
 		"PolarAreaChart",
 		"MetroChart",

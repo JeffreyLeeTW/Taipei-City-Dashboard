@@ -48,6 +48,7 @@ food_inspection_two_d_district_pass	{#56B96D,#8BCF74,#2E7D32,#A5D6A7,#66BB6A,#43
 food_inspection_two_d_district_fail	{#ED6A45,#F28B74,#C0392B,#E57373,#D32F2F,#EF5350,#FF8A65,#BF360C,#FF7043,#E53935,#FFAB91,#D84315}	{BarChart,ColumnChart}	件
 food_inspection_map_pass	{#56B96D,#8BCF74,#2E7D32,#A5D6A7,#66BB6A,#43A047,#9CCC65,#7CB342,#C5E1A5,#388E3C,#689F38,#AED581,#8DD3C7,#BEBADA,#FB8072,#80B1D3,#FDB462,#B3DE69,#FCCDE5,#D9D9D9,#BC80BD,#CCEBC5,#FFED6F,#1B9E77,#D95F02,#7570B3,#E7298A,#66A61E,#E6AB02,#A6761D,#666666}	{DistrictChart,BarChart,ColumnChart}	件
 food_inspection_map_fail	{#ED6A45,#F28B74,#C0392B,#E57373,#D32F2F,#EF5350,#FF8A65,#BF360C,#FF7043,#E53935,#FFAB91,#D84315,#8DD3C7,#BEBADA,#FB8072,#80B1D3,#FDB462,#B3DE69,#FCCDE5,#D9D9D9,#BC80BD,#CCEBC5,#FFED6F,#1B9E77,#D95F02,#7570B3,#E7298A,#66A61E,#E6AB02,#A6761D,#666666}	{DistrictChart,BarChart,ColumnChart}	件
+food_safety_risk_rank_map	{#E8F6EF,#F5D76E,#F49F36,#E06666,#8B1E3F}	{TreemapChart,BarChart}	分
 \.
 
 
@@ -95,6 +96,7 @@ COPY public.components (id, index, name) FROM stdin;
 241	food_inspection_two_d_district_fail	食品抽驗不合格量（行政區分布）
 242	food_inspection_map_pass	食品抽驗合格地區分布
 243	food_inspection_map_fail	食品抽驗不合格地區分布
+244	food_safety_risk_rank_map	雙北各區食安風險排行
 \.
 
 
@@ -117,8 +119,8 @@ COPY public.dashboards (id, index, name, components, icon, updated_at, created_a
 355	ltc_care_newtpe	長照關懷	{214,215,216,218}	elderly	2025-02-27 06:42:21.705931+00	2024-03-21 09:38:37.66+00
 359	map-layers-metrotaipei	圖資資訊	{217}	public	2024-05-16 03:56:12.76016+00	2024-03-21 10:04:24.928533+00
 358	practical_transportation_newtpe	務實交通	{60,212,213}	directions_car	2025-03-12 08:00:38.75842+00	2024-03-21 09:38:37.66+00
-360	health_food_medical_tpe	食安醫療	{219,220,221,222,223,224,225,226,227,228,229,231,232,240,241,242,243}	local_hospital	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00
-361	health_food_medical_metrotaipei	食安醫療	{219,221,222,224,225,226,228,229,231,232,240,241,242,243}	local_hospital	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00
+360	health_food_medical_tpe	食安醫療	{219,220,221,222,223,224,225,226,227,228,229,231,232,240,241,242,243,244}	local_hospital	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00
+361	health_food_medical_metrotaipei	食安醫療	{219,221,222,224,225,226,228,229,231,232,240,241,242,243,244}	local_hospital	2026-05-02 00:00:00+00	2026-05-02 00:00:00+00
 1	09a25cd9cb7d	收藏組件	\N	favorite	2025-03-14 07:34:22.247753+00	2025-03-14 07:34:22.247753+00
 2	3245d9eace5f	我的新儀表板	{215,218,216,213,212,214,60,146}	star	2025-03-14 14:55:11.732116+00	2025-03-14 14:55:11.732116+00
 \.
@@ -140,9 +142,6 @@ COPY public.issues (id, title, user_name, user_id, context, description, decisio
 \.
 
 
-ALTER TABLE public.query_charts OWNER TO postgres;
-\.
-TRUNCATE TABLE public.query_charts RESTART IDENTITY CASCADE;
 COPY public.query_charts (index, history_config, map_config_ids, map_filter, time_from, time_to, update_freq, update_freq_unit, source, short_desc, long_desc, use_case, links, contributors, created_at, updated_at, query_type, query_chart, query_history, city) FROM stdin;
 aging_kpi	\N	{}	{}	static	\N	0	\N	主計處	此圖顯示雙北長照關懷各項指標。	此圖表呈現雙北長照關懷相關指標，包括 扶老比、扶幼比、扶養比 及 老化指數。扶老比代表每百名勞動人口需扶養的老年人口數，扶幼比則是需扶養的兒童人口數，而扶養比則合計這兩者，反映整體社會負擔程度。老化指數則比較老年人口與兒童人口比例，顯示人口結構的高齡化趨勢。這些數據可用於評估長照需求，並規劃資源分配與政策方向，以因應人口老化帶來的挑戰。	在制定長照政策時，政府可運用 扶老比、扶幼比、扶養比 及 老化指數 來評估未來照護需求。例如，某城市發現扶老比上升且老化指數超過 100，代表老年人口已多於兒童，預示長照需求將持續增加。政府可據此增設長照機構、強化居家照護服務，並鼓勵社區共融計畫，以減輕勞動人口的扶養壓力，確保高齡者獲得適切照顧。	{https://data.taipei/dataset/detail?id=64c8a3a0-3b9a-4f49-a13a-fb1eb2ffa4b1,https://data.ntpc.gov.tw/datasets/8308ab58-62d1-424e-8314-24b65b7ab492}	{doit,ntpc}	2023-12-20 05:56:00+00	2024-06-12 06:02:41.642+00	three_d	select y_axis,icon ,round(avg(data))data  \r\nfrom(\r\nselect '扶老比' as y_axis, percent30 as data ,'%' as icon \r\nfrom public.city_age_distribution_taipei \r\nwhere 年份= (select max(年份) from public.city_age_distribution_taipei ) and  區域別='總計' and 統計類型='計'\r\nunion all\r\nselect '扶幼比' as y_axis, percent31 as data ,'%' as icon \r\nfrom public.city_age_distribution_taipei \r\nwhere 年份= (select max(年份) from public.city_age_distribution_taipei ) and  區域別='總計' and 統計類型='計'\r\nunion all\r\nselect '扶養比' as y_axis, percent32 as data ,'%' as icon \r\nfrom public.city_age_distribution_taipei \r\nwhere 年份= (select max(年份) from public.city_age_distribution_taipei ) and  區域別='總計' and 統計類型='計'\r\nunion all\r\nselect '老化指數' as y_axis, percent33 as data ,'%' as icon \r\nfrom public.city_age_distribution_taipei \r\nwhere 年份= (select max(年份) from public.city_age_distribution_taipei ) and  區域別='總計' and 統計類型='計'\r\nunion all\r\nselect '扶老比' as y_axis, avg(percent30) as data ,'%' as icon \r\nfrom public.city_age_distribution_newtaipei \r\nwhere 年份= (select max(年份) from public.city_age_distribution_newtaipei )  and 統計類型='計'\r\nunion all\r\nselect '扶幼比' as y_axis, avg(percent31) as data ,'%' as icon \r\nfrom public.city_age_distribution_newtaipei \r\nwhere 年份= (select max(年份) from public.city_age_distribution_newtaipei ) and 統計類型='計'\r\nunion all\r\nselect '扶養比' as y_axis, avg(percent32) as data ,'%' as icon \r\nfrom public.city_age_distribution_newtaipei \r\nwhere 年份= (select max(年份) from public.city_age_distribution_newtaipei )  and 統計類型='計'\r\nunion all\r\nselect '老化指數' as y_axis, avg(percent33) as data ,'%' as icon \r\nfrom public.city_age_distribution_newtaipei \r\nwhere 年份= (select max(年份) from public.city_age_distribution_newtaipei )  and 統計類型='計'\r\n)d\r\ngroup by y_axis,icon	\N	metrotaipei
 aging_kpi	\N	{}	{}	static	\N	0	\N	主計處	此圖顯示臺北長照關懷各項指標。	此圖表呈現臺北長照關懷相關指標，包括 扶老比、扶幼比、扶養比 及 老化指數。扶老比代表每百名勞動人口需扶養的老年人口數，扶幼比則是需扶養的兒童人口數，而扶養比則合計這兩者，反映整體社會負擔程度。老化指數則比較老年人口與兒童人口比例，顯示人口結構的高齡化趨勢。這些數據可用於評估長照需求，並規劃資源分配與政策方向，以因應人口老化帶來的挑戰。	在制定長照政策時，政府可運用 扶老比、扶幼比、扶養比 及 老化指數 來評估未來照護需求。例如，某城市發現扶老比上升且老化指數超過 100，代表老年人口已多於兒童，預示長照需求將持續增加。政府可據此增設長照機構、強化居家照護服務，並鼓勵社區共融計畫，以減輕勞動人口的扶養壓力，確保高齡者獲得適切照顧。	{https://data.taipei/dataset/detail?id=64c8a3a0-3b9a-4f49-a13a-fb1eb2ffa4b1}	{doit}	2023-12-20 05:56:00+00	2024-06-12 06:02:41.642+00	three_d	select y_axis,icon ,round(avg(data))data  \r\nfrom(\r\nselect '扶老比' as y_axis, percent30 as data ,'%' as icon \r\nfrom public.city_age_distribution_taipei \r\nwhere 年份= (select max(年份) from public.city_age_distribution_taipei ) and  區域別='總計' and 統計類型='計'\r\nunion all\r\nselect '扶幼比' as y_axis, percent31 as data ,'%' as icon \r\nfrom public.city_age_distribution_taipei \r\nwhere 年份= (select max(年份) from public.city_age_distribution_taipei ) and  區域別='總計' and 統計類型='計'\r\nunion all\r\nselect '扶養比' as y_axis, percent32 as data ,'%' as icon \r\nfrom public.city_age_distribution_taipei \r\nwhere 年份= (select max(年份) from public.city_age_distribution_taipei ) and  區域別='總計' and 統計類型='計'\r\nunion all\r\nselect '老化指數' as y_axis, percent33 as data ,'%' as icon \r\nfrom public.city_age_distribution_taipei \r\nwhere 年份= (select max(年份) from public.city_age_distribution_taipei ) and  區域別='總計' and 統計類型='計'\r\n)d\r\ngroup by y_axis,icon	\N	taipei
@@ -193,6 +192,8 @@ food_inspection_map_pass	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料
 food_inspection_map_pass	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗合格地區分布	食品抽驗合格地區分布，依需求輸出 x_axis / data。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-03 00:00:00+00	2026-05-03 00:00:00+00	two_d	select district as x_axis, sum(count)::int as data from public.food_inspection where result = true group by district order by district	\N	metrotaipei
 food_inspection_map_fail	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗不合格地區分布	食品抽驗不合格地區分布，依需求輸出 x_axis / data。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit}	2026-05-03 00:00:00+00	2026-05-03 00:00:00+00	two_d	select district as x_axis, sum(count)::int as data from public.food_inspection where city='臺北市' and result = false group by district order by district	\N	taipei
 food_inspection_map_fail	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	食品抽驗不合格地區分布	食品抽驗不合格地區分布，依需求輸出 x_axis / data。	可直接作為 query_charts raw SQL，供前端對應圖表型態渲染與比對。	{}	{doit,ntpc}	2026-05-03 00:00:00+00	2026-05-03 00:00:00+00	two_d	select district as x_axis, sum(count)::int as data from public.food_inspection where result = false group by district order by district	\N	metrotaipei
+food_safety_risk_rank_map	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	臺北市各區食安風險排行地圖	以 2023~2025 年食品相關疾病案件、食品抽驗不合格率、急救責任醫院資源三項資料合成 0 到 100 分食安風險。	可用於快速辨識食安事件負擔高、抽驗不合格比例偏高且醫療應變資源相對不足的行政區，作為稽查排程、宣導與跨局處資源配置的優先排序參考。	{}	{doit}	2026-05-03 00:00:00+00	2026-05-03 00:00:00+00	two_d	WITH districts AS (SELECT DISTINCT city, district FROM public.foodborne_disease WHERE city = '臺北市' AND trim(year)::int BETWEEN 112 AND 114 UNION SELECT DISTINCT city, district FROM public.food_inspection WHERE city = '臺北市' UNION SELECT DISTINCT city, district FROM public.emergency_medical_service WHERE city = '臺北市'), disease AS (SELECT city, district, SUM(cases)::float AS disease_cases FROM public.foodborne_disease WHERE city = '臺北市' AND trim(year)::int BETWEEN 112 AND 114 GROUP BY city, district), inspection AS (SELECT city, district, SUM(count)::float AS inspections, SUM(CASE WHEN result THEN 0 ELSE count END)::float AS failed_inspections FROM public.food_inspection WHERE city = '臺北市' GROUP BY city, district), hospital AS (SELECT city, district, COUNT(*)::float AS hospitals FROM public.emergency_medical_service WHERE city = '臺北市' GROUP BY city, district), metrics AS (SELECT districts.district, COALESCE(disease.disease_cases, 0) AS disease_cases, COALESCE(inspection.inspections, 0) AS inspections, COALESCE(inspection.failed_inspections, 0) AS failed_inspections, COALESCE(hospital.hospitals, 0) AS hospitals FROM districts LEFT JOIN disease ON disease.city = districts.city AND disease.district = districts.district LEFT JOIN inspection ON inspection.city = districts.city AND inspection.district = districts.district LEFT JOIN hospital ON hospital.city = districts.city AND hospital.district = districts.district), scored AS (SELECT metrics.*, CASE WHEN SUM(inspections) OVER () > 0 THEN SUM(failed_inspections) OVER () / SUM(inspections) OVER () ELSE 0 END AS avg_fail_rate FROM metrics), indexed AS (SELECT district, disease_cases / NULLIF(MAX(disease_cases) OVER (), 0) AS disease_index, ((failed_inspections + avg_fail_rate * 50) / NULLIF(inspections + 50, 0)) / NULLIF(MAX((failed_inspections + avg_fail_rate * 50) / NULLIF(inspections + 50, 0)) OVER (), 0) AS fail_index, 1 - hospitals / NULLIF(MAX(hospitals) OVER (), 0) AS care_gap FROM scored) SELECT district AS x_axis, ROUND((100 * (0.50 * COALESCE(disease_index, 0) + 0.35 * COALESCE(fail_index, 0) + 0.15 * COALESCE(care_gap, 1)))::numeric, 1)::float AS data FROM indexed ORDER BY data DESC, district	\N	taipei
+food_safety_risk_rank_map	\N	\N	{}	static	\N	0	\N	臺北市/新北市政府資料開放平台	雙北各區食安風險排行地圖	以 2023~2025 年食品相關疾病案件、食品抽驗不合格率、急救責任醫院資源三項資料合成 0 到 100 分食安風險。	可用於快速辨識食安事件負擔高、抽驗不合格比例偏高且醫療應變資源相對不足的行政區，作為稽查排程、宣導與跨局處資源配置的優先排序參考。	{}	{doit,ntpc}	2026-05-03 00:00:00+00	2026-05-03 00:00:00+00	two_d	WITH districts AS (SELECT DISTINCT city, district FROM public.foodborne_disease WHERE trim(year)::int BETWEEN 112 AND 114 AND district <> '其他' UNION SELECT DISTINCT city, district FROM public.food_inspection UNION SELECT DISTINCT city, district FROM public.emergency_medical_service), disease AS (SELECT city, district, SUM(cases)::float AS disease_cases FROM public.foodborne_disease WHERE trim(year)::int BETWEEN 112 AND 114 GROUP BY city, district), inspection AS (SELECT city, district, SUM(count)::float AS inspections, SUM(CASE WHEN result THEN 0 ELSE count END)::float AS failed_inspections FROM public.food_inspection GROUP BY city, district), hospital AS (SELECT city, district, COUNT(*)::float AS hospitals FROM public.emergency_medical_service GROUP BY city, district), metrics AS (SELECT districts.district, COALESCE(disease.disease_cases, 0) AS disease_cases, COALESCE(inspection.inspections, 0) AS inspections, COALESCE(inspection.failed_inspections, 0) AS failed_inspections, COALESCE(hospital.hospitals, 0) AS hospitals FROM districts LEFT JOIN disease ON disease.city = districts.city AND disease.district = districts.district LEFT JOIN inspection ON inspection.city = districts.city AND inspection.district = districts.district LEFT JOIN hospital ON hospital.city = districts.city AND hospital.district = districts.district), scored AS (SELECT metrics.*, CASE WHEN SUM(inspections) OVER () > 0 THEN SUM(failed_inspections) OVER () / SUM(inspections) OVER () ELSE 0 END AS avg_fail_rate FROM metrics), indexed AS (SELECT district, disease_cases / NULLIF(MAX(disease_cases) OVER (), 0) AS disease_index, ((failed_inspections + avg_fail_rate * 50) / NULLIF(inspections + 50, 0)) / NULLIF(MAX((failed_inspections + avg_fail_rate * 50) / NULLIF(inspections + 50, 0)) OVER (), 0) AS fail_index, 1 - hospitals / NULLIF(MAX(hospitals) OVER (), 0) AS care_gap FROM scored) SELECT district AS x_axis, ROUND((100 * (0.50 * COALESCE(disease_index, 0) + 0.35 * COALESCE(fail_index, 0) + 0.15 * COALESCE(care_gap, 1)))::numeric, 1)::float AS data FROM indexed ORDER BY data DESC, district	\N	metrotaipei
 \.
 
 
@@ -223,407 +224,6 @@ SELECT pg_catalog.setval('public.dashboards_id_seq', (SELECT COALESCE(MAX(id), 0
 
 SELECT pg_catalog.setval('public.groups_id_seq', (SELECT COALESCE(MAX(id), 4) FROM public.groups), true);
 
-
---
--- Custom overrides: food safety and emergency medical dashboard
---
-
-INSERT INTO public.component_maps (id, index, title, type, source, size, icon, paint, property)
-VALUES
-(
-    104,
-    'foodborne_disease_metrotaipei',
-    '食品相關疾病分布',
-    'fill',
-    'geojson',
-    NULL,
-    NULL,
-    $${"fill-color":["step",["get","value"],"#E8F6EF",26,"#B8E3C8",51,"#7BC87C",76,"#2E8B57",101,"#0B3D2E"],"fill-opacity":0.72,"fill-outline-color":"#FFFFFF"}$$::json,
-    $$[{"key":"city","name":"城市"},{"key":"district","name":"行政區"},{"key":"value","name":"食品相關疾病數量"}]$$::json
-)
-ON CONFLICT (id) DO UPDATE SET
-    index = EXCLUDED.index,
-    title = EXCLUDED.title,
-    type = EXCLUDED.type,
-    source = EXCLUDED.source,
-    size = EXCLUDED.size,
-    icon = EXCLUDED.icon,
-    paint = EXCLUDED.paint,
-    property = EXCLUDED.property;
-
-INSERT INTO public.component_charts (index, color, types, unit)
-VALUES
-    ('foodborne_disease_map_legend', '{#E8F6EF,#B8E3C8,#7BC87C,#2E8B57,#0B3D2E}', '{MapLegend}', '件'),
-    ('food_inspection_three_d_district_year', '{#56B96D,#ED6A45}', '{ColumnChart}', '件'),
-    ('emergency_medical_service_map_legend', '{#D84A4A,#3E8E7E,#F2C14E}', '{TextUnitChart}', '家'),
-    ('food_safety_risk_rank_map', '{#E8F6EF,#F5D76E,#F49F36,#E06666,#8B1E3F}', '{FoodSafetyRiskMap}', '分')
-ON CONFLICT (index) DO UPDATE SET
-    color = EXCLUDED.color,
-    types = EXCLUDED.types,
-    unit = EXCLUDED.unit;
-
-INSERT INTO public.components (id, index, name)
-VALUES (240, 'food_safety_risk_rank_map', '雙北各區食安風險排行')
-ON CONFLICT (id) DO UPDATE SET
-    index = EXCLUDED.index,
-    name = EXCLUDED.name;
-
-UPDATE public.components
-SET name = CASE id
-    WHEN 225 THEN '食品相關疾病分布'
-    WHEN 226 THEN '食品抽驗結果（行政區）'
-    WHEN 239 THEN '急救責任醫院數量'
-    ELSE name
-END
-WHERE id IN (225, 226, 239);
-
-UPDATE public.dashboards
-SET components = '{240,225,226}',
-    updated_at = '2026-05-02 00:00:00+00'
-WHERE index IN ('health_food_medical_tpe', 'health_food_medical_metrotaipei');
-
-INSERT INTO public.dashboards (id, index, name, components, icon, updated_at, created_at)
-VALUES
-    (365, 'medical_emergency_tpe', '醫療救護', '{239}', 'local_hospital', '2026-05-02 00:00:00+00', '2026-05-02 00:00:00+00'),
-    (366, 'medical_emergency_newtpe', '醫療救護', '{239}', 'local_hospital', '2026-05-02 00:00:00+00', '2026-05-02 00:00:00+00')
-ON CONFLICT (index) DO UPDATE SET
-    name = EXCLUDED.name,
-    components = EXCLUDED.components,
-    icon = EXCLUDED.icon,
-    updated_at = EXCLUDED.updated_at;
-
-DELETE FROM public.dashboard_groups
-USING public.dashboards
-WHERE public.dashboard_groups.dashboard_id = public.dashboards.id
-  AND public.dashboards.index IN ('medical_emergency_tpe', 'medical_emergency_newtpe');
-
-INSERT INTO public.dashboard_groups (dashboard_id, group_id)
-SELECT dashboards.id, groups.id
-FROM public.dashboards
-JOIN public.groups ON (
-    (dashboards.index = 'medical_emergency_tpe' AND groups.name = 'taipei')
-    OR (dashboards.index = 'medical_emergency_newtpe' AND groups.name = 'metrotaipei')
-)
-ON CONFLICT (dashboard_id, group_id) DO NOTHING;
-
-UPDATE public.query_charts
-SET
-    map_config_ids = '{104}',
-    short_desc = '食品相關疾病分布',
-    long_desc = '以雙北行政區界呈現 2023~2025 年食品相關疾病案件數量，顏色越深代表近三年累計案件數越高。',
-    use_case = '可用於辨識雙北近三年食品相關疾病案件較集中的行政區，輔助食安風險觀察與資源配置。',
-    query_type = 'map_legend',
-    query_chart = $$SELECT *
-FROM (
-    SELECT '0 - 25 件' AS name, 'fill' AS type
-    UNION ALL SELECT '26 - 50 件', 'fill'
-    UNION ALL SELECT '51 - 75 件', 'fill'
-    UNION ALL SELECT '76 - 100 件', 'fill'
-    UNION ALL SELECT '101 件以上', 'fill'
-) legend$$
-WHERE index = 'foodborne_disease_map_legend';
-
-UPDATE public.query_charts
-SET
-    short_desc = '食品抽驗合格與不合格數量（行政區）',
-    long_desc = '以堆疊長條圖呈現各行政區食品抽驗數量，長條下半部為合格、上半部為不合格。',
-    use_case = '可用於比較各行政區食品抽驗量與不合格量，快速辨識抽驗量體與異常較高的區域。',
-    query_type = 'three_d',
-    query_chart = $$WITH districts AS (
-    SELECT DISTINCT city, district
-    FROM public.food_inspection
-    WHERE city = '臺北市'
-), statuses AS (
-    SELECT '合格' AS label, TRUE AS result, 1 AS sort_order
-    UNION ALL
-    SELECT '不合格', FALSE, 2
-)
-SELECT districts.district AS x_axis,
-       statuses.label AS y_axis,
-       COALESCE(SUM(food_inspection.count), 0)::int AS data
-FROM districts
-CROSS JOIN statuses
-LEFT JOIN public.food_inspection
-    ON food_inspection.city = districts.city
-   AND food_inspection.district = districts.district
-   AND food_inspection.result = statuses.result
-GROUP BY districts.district, statuses.label, statuses.sort_order
-ORDER BY districts.district, statuses.sort_order$$
-WHERE index = 'food_inspection_three_d_district_year'
-  AND city = 'taipei';
-
-UPDATE public.query_charts
-SET
-    short_desc = '食品抽驗合格與不合格數量（雙北行政區）',
-    long_desc = '以堆疊長條圖呈現雙北各行政區食品抽驗數量，長條下半部為合格、上半部為不合格。',
-    use_case = '可用於比較雙北各行政區食品抽驗量與不合格量，快速辨識抽驗量體與異常較高的區域。',
-    query_type = 'three_d',
-    query_chart = $$WITH districts AS (
-    SELECT DISTINCT city, district
-    FROM public.food_inspection
-), statuses AS (
-    SELECT '合格' AS label, TRUE AS result, 1 AS sort_order
-    UNION ALL
-    SELECT '不合格', FALSE, 2
-)
-SELECT districts.city || districts.district AS x_axis,
-       statuses.label AS y_axis,
-       COALESCE(SUM(food_inspection.count), 0)::int AS data
-FROM districts
-CROSS JOIN statuses
-LEFT JOIN public.food_inspection
-    ON food_inspection.city = districts.city
-   AND food_inspection.district = districts.district
-   AND food_inspection.result = statuses.result
-GROUP BY districts.city, districts.district, statuses.label, statuses.sort_order
-ORDER BY districts.city, districts.district, statuses.sort_order$$
-WHERE index = 'food_inspection_three_d_district_year'
-  AND city = 'metrotaipei';
-
-UPDATE public.query_charts
-SET
-    map_config_ids = '{103}',
-    short_desc = '急救責任醫院數量',
-    long_desc = '統計臺北市、新北市與雙北合計的急救責任醫院數量，並可在地圖上顯示醫院位置。',
-    use_case = '可用於快速掌握雙北急救責任醫院資源分布，搭配地圖檢視各院位置與基本資訊。',
-    query_type = 'three_d',
-    query_chart = $$SELECT y_axis, icon, data
-FROM (
-    SELECT '臺北市' AS y_axis, '家' AS icon, COUNT(*)::int AS data, 1 AS sort_order
-    FROM public.emergency_medical_service
-    WHERE city = '臺北市'
-    UNION ALL
-    SELECT '新北市' AS y_axis, '家' AS icon, COUNT(*)::int AS data, 2 AS sort_order
-    FROM public.emergency_medical_service
-    WHERE city = '新北市'
-    UNION ALL
-    SELECT '雙北' AS y_axis, '家' AS icon, COUNT(*)::int AS data, 3 AS sort_order
-    FROM public.emergency_medical_service
-) stats
-ORDER BY sort_order$$
-WHERE index = 'emergency_medical_service_map_legend';
-
-DELETE FROM public.query_charts
-WHERE index = 'food_safety_risk_rank_map';
-
-INSERT INTO public.query_charts (
-    index,
-    history_config,
-    map_config_ids,
-    map_filter,
-    time_from,
-    time_to,
-    update_freq,
-    update_freq_unit,
-    source,
-    short_desc,
-    long_desc,
-    use_case,
-    links,
-    contributors,
-    created_at,
-    updated_at,
-    query_type,
-    query_chart,
-    query_history,
-    city
-)
-VALUES
-(
-    'food_safety_risk_rank_map',
-    NULL,
-    NULL,
-    '{}'::json,
-    'static',
-    NULL,
-    0,
-    NULL,
-    '臺北市/新北市政府資料開放平台',
-    '臺北市各區食安風險排行地圖',
-    '以 2023~2025 年食品相關疾病案件、食品抽驗不合格率、急救責任醫院資源三項資料合成 0 到 100 分食安風險。算法：風險分數 = 100 * (0.50 * 疾病案件指數 + 0.35 * 平滑後抽驗不合格率指數 + 0.15 * 醫療應變缺口)。疾病案件指數為該區 2023~2025 年食品相關疾病案件數除以全市最高值；抽驗不合格率先用全市平均不合格率與 50 件虛擬樣本做平滑，避免低抽驗量行政區被少數不合格件數放大，再除以全市最高平滑不合格率；醫療應變缺口為 1 - 該區急救責任醫院數 / 全市最高急救責任醫院數。',
-    '可用於快速辨識食安事件負擔高、抽驗不合格比例偏高且醫療應變資源相對不足的行政區，作為稽查排程、宣導與跨局處資源配置的優先排序參考。',
-    '{}',
-    '{doit}',
-    '2026-05-02 00:00:00+00',
-    '2026-05-02 00:00:00+00',
-    'two_d',
-    $$WITH districts AS (
-    SELECT DISTINCT city, district
-    FROM public.foodborne_disease
-    WHERE city = '臺北市'
-      AND trim(year)::int BETWEEN 112 AND 114
-    UNION
-    SELECT DISTINCT city, district
-    FROM public.food_inspection
-    WHERE city = '臺北市'
-    UNION
-    SELECT DISTINCT city, district
-    FROM public.emergency_medical_service
-    WHERE city = '臺北市'
-),
-disease AS (
-    SELECT city, district, SUM(cases)::float AS disease_cases
-    FROM public.foodborne_disease
-    WHERE city = '臺北市'
-      AND trim(year)::int BETWEEN 112 AND 114
-    GROUP BY city, district
-),
-inspection AS (
-    SELECT city,
-           district,
-           SUM(count)::float AS inspections,
-           SUM(CASE WHEN result THEN 0 ELSE count END)::float AS failed_inspections
-    FROM public.food_inspection
-    WHERE city = '臺北市'
-    GROUP BY city, district
-),
-hospital AS (
-    SELECT city, district, COUNT(*)::float AS hospitals
-    FROM public.emergency_medical_service
-    WHERE city = '臺北市'
-    GROUP BY city, district
-),
-metrics AS (
-    SELECT districts.district,
-           COALESCE(disease.disease_cases, 0) AS disease_cases,
-           COALESCE(inspection.inspections, 0) AS inspections,
-           COALESCE(inspection.failed_inspections, 0) AS failed_inspections,
-           COALESCE(hospital.hospitals, 0) AS hospitals
-    FROM districts
-    LEFT JOIN disease
-        ON disease.city = districts.city
-       AND disease.district = districts.district
-    LEFT JOIN inspection
-        ON inspection.city = districts.city
-       AND inspection.district = districts.district
-    LEFT JOIN hospital
-        ON hospital.city = districts.city
-       AND hospital.district = districts.district
-),
-scored AS (
-    SELECT metrics.*,
-           CASE
-               WHEN SUM(inspections) OVER () > 0
-               THEN SUM(failed_inspections) OVER () / SUM(inspections) OVER ()
-               ELSE 0
-           END AS avg_fail_rate
-    FROM metrics
-),
-indexed AS (
-    SELECT district,
-           disease_cases / NULLIF(MAX(disease_cases) OVER (), 0) AS disease_index,
-           ((failed_inspections + avg_fail_rate * 50) / NULLIF(inspections + 50, 0))
-               / NULLIF(MAX((failed_inspections + avg_fail_rate * 50) / NULLIF(inspections + 50, 0)) OVER (), 0) AS fail_index,
-           1 - hospitals / NULLIF(MAX(hospitals) OVER (), 0) AS care_gap
-    FROM scored
-)
-SELECT district AS x_axis,
-       ROUND((100 * (
-           0.50 * COALESCE(disease_index, 0) +
-           0.35 * COALESCE(fail_index, 0) +
-           0.15 * COALESCE(care_gap, 1)
-       ))::numeric, 1)::float AS data
-FROM indexed
-ORDER BY data DESC, district$$,
-    NULL,
-    'taipei'
-),
-(
-    'food_safety_risk_rank_map',
-    NULL,
-    NULL,
-    '{}'::json,
-    'static',
-    NULL,
-    0,
-    NULL,
-    '臺北市/新北市政府資料開放平台',
-    '雙北各區食安風險排行地圖',
-    '以 2023~2025 年食品相關疾病案件、食品抽驗不合格率、急救責任醫院資源三項資料合成 0 到 100 分食安風險。算法：風險分數 = 100 * (0.50 * 疾病案件指數 + 0.35 * 平滑後抽驗不合格率指數 + 0.15 * 醫療應變缺口)。疾病案件指數為該區 2023~2025 年食品相關疾病案件數除以雙北最高值；抽驗不合格率先用雙北平均不合格率與 50 件虛擬樣本做平滑，避免低抽驗量行政區被少數不合格件數放大，再除以雙北最高平滑不合格率；醫療應變缺口為 1 - 該區急救責任醫院數 / 雙北最高急救責任醫院數。',
-    '可用於快速辨識食安事件負擔高、抽驗不合格比例偏高且醫療應變資源相對不足的行政區，作為稽查排程、宣導與跨局處資源配置的優先排序參考。',
-    '{}',
-    '{doit,ntpc}',
-    '2026-05-02 00:00:00+00',
-    '2026-05-02 00:00:00+00',
-    'two_d',
-$$WITH districts AS (
-    SELECT DISTINCT city, district
-    FROM public.foodborne_disease
-    WHERE trim(year)::int BETWEEN 112 AND 114
-      AND district <> '其他'
-    UNION
-    SELECT DISTINCT city, district
-    FROM public.food_inspection
-    UNION
-    SELECT DISTINCT city, district
-    FROM public.emergency_medical_service
-),
-disease AS (
-    SELECT city, district, SUM(cases)::float AS disease_cases
-    FROM public.foodborne_disease
-    WHERE trim(year)::int BETWEEN 112 AND 114
-    GROUP BY city, district
-),
-inspection AS (
-    SELECT city,
-           district,
-           SUM(count)::float AS inspections,
-           SUM(CASE WHEN result THEN 0 ELSE count END)::float AS failed_inspections
-    FROM public.food_inspection
-    GROUP BY city, district
-),
-hospital AS (
-    SELECT city, district, COUNT(*)::float AS hospitals
-    FROM public.emergency_medical_service
-    GROUP BY city, district
-),
-metrics AS (
-    SELECT districts.district,
-           COALESCE(disease.disease_cases, 0) AS disease_cases,
-           COALESCE(inspection.inspections, 0) AS inspections,
-           COALESCE(inspection.failed_inspections, 0) AS failed_inspections,
-           COALESCE(hospital.hospitals, 0) AS hospitals
-    FROM districts
-    LEFT JOIN disease
-        ON disease.city = districts.city
-       AND disease.district = districts.district
-    LEFT JOIN inspection
-        ON inspection.city = districts.city
-       AND inspection.district = districts.district
-    LEFT JOIN hospital
-        ON hospital.city = districts.city
-       AND hospital.district = districts.district
-),
-scored AS (
-    SELECT metrics.*,
-           CASE
-               WHEN SUM(inspections) OVER () > 0
-               THEN SUM(failed_inspections) OVER () / SUM(inspections) OVER ()
-               ELSE 0
-           END AS avg_fail_rate
-    FROM metrics
-),
-indexed AS (
-    SELECT district,
-           disease_cases / NULLIF(MAX(disease_cases) OVER (), 0) AS disease_index,
-           ((failed_inspections + avg_fail_rate * 50) / NULLIF(inspections + 50, 0))
-               / NULLIF(MAX((failed_inspections + avg_fail_rate * 50) / NULLIF(inspections + 50, 0)) OVER (), 0) AS fail_index,
-           1 - hospitals / NULLIF(MAX(hospitals) OVER (), 0) AS care_gap
-    FROM scored
-)
-SELECT district AS x_axis,
-       ROUND((100 * (
-           0.50 * COALESCE(disease_index, 0) +
-           0.35 * COALESCE(fail_index, 0) +
-           0.15 * COALESCE(care_gap, 1)
-       ))::numeric, 1)::float AS data
-FROM indexed
-ORDER BY data DESC, district$$,
-    NULL,
-    'metrotaipei'
-);
-
-SELECT pg_catalog.setval('public.dashboards_id_seq', (SELECT COALESCE(MAX(id), 0) FROM public.dashboards), true);
 
 
 -- Completed on 2024-02-16 10:38:44 UTC
