@@ -33,7 +33,7 @@ bike_network	{#a0b8e8,#b7ff98}	{DonutChart,BarChart}	公里
 bike_map	{#a0b8e8,#b7ff98}	{MapLegend}	條
 foodborne_disease_three_d_district_year	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A,#7B61FF,#00A6A6,#B9822B,#6C757D}	{ColumnChart}	件
 foodborne_disease_three_d_year_district	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A,#7B61FF,#00A6A6,#B9822B,#6C757D}	{ColumnChart}	件
-foodborne_disease_two_d_district	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A,#7B61FF,#00A6A6,#B9822B,#6C757D}	{BarChart,ColumnChart}	件
+foodborne_disease_two_d_district	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A,#7B61FF,#00A6A6,#B9822B,#6C757D}	{DistrictChart,BarChart,ColumnChart}	件
 foodborne_disease_two_d_year	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A,#7B61FF,#00A6A6,#B9822B,#6C757D}	{ColumnChart,BarChart}	件
 foodborne_disease_time_year	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A,#7B61FF,#00A6A6,#B9822B,#6C757D}	{TimelineSeparateChart,TimelineStackedChart}	件
 foodborne_disease_map	{#24B0DD,#56B96D,#F8CF58,#F5AD4A,#E170A6,#ED6A45,#AF4137,#10294A,#7B61FF,#00A6A6,#B9822B,#6C757D,#8DD3C7,#BEBADA,#FB8072,#80B1D3,#FDB462,#B3DE69,#FCCDE5,#D9D9D9,#BC80BD,#CCEBC5,#FFED6F,#1B9E77,#D95F02,#7570B3,#E7298A,#66A61E,#E6AB02,#A6761D,#666666}	{DistrictChart,ColumnChart}	件
