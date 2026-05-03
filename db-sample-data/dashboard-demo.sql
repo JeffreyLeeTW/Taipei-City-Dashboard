@@ -587,25 +587,6 @@ CREATE TABLE public.tran_ubike_realtime_new_tpe (
 );
 
 --
--- Name: testrkp3049wikf09kjdf; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.testrkp3049wikf09kjdf (
-    data_time timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
-    station_uid character varying(50),
-    station_id character varying(50),
-    service_status character varying(10),
-    service_type character varying(10),
-    available_rent_general_bikes integer,
-    available_return_bikes integer,
-    available_rent_electric_bikes integer,
-    tdx_update_time timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
-    _ctime timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
-    _mtime timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
-    ogc_fid integer NOT NULL
-);
-
---
 -- Name: foodborne_disease_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
