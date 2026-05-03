@@ -268,7 +268,8 @@ $radius-20: 20px;
 
 /* === 主要樣式 === */
 .chat-widget {
-	width: 400px;
+	width: 100%;
+	height: 100%;
 	border-radius: $radius-20;
 	overflow: hidden;
 	background: $bg-dark;

@@ -50,6 +50,19 @@ const isMappedToUpdateBoards = ref(false);
 // Chatroom
 const isChatBtnShow = ref(true);
 const isChatBoxShow = ref(false);
+const chatBoxWidth = ref(400);
+const chatBoxHeight = ref(500);
+const isResizingChatBox = ref(false);
+const resizeStart = {
+	x: 0,
+	y: 0,
+	width: 400,
+	height: 500,
+};
+const CHATBOX_MIN_WIDTH = 320;
+const CHATBOX_MAX_WIDTH = 780;
+const CHATBOX_MIN_HEIGHT = 360;
+const CHATBOX_MAX_HEIGHT = 860;
 // Timers
 let chartTimer = null;
 let crowdingTimer = null;
@@ -159,7 +172,6 @@ function reload3DMRTMapData() {
 	});
 }
 
-// Chatroom 功能顯示隱藏
 function chatbotBtnHandler() {
 	isChatBoxShow.value = !isChatBoxShow.value;
 }
@@ -167,6 +179,47 @@ function chatbotBtnHandler() {
 function hideBtnClickHandler() {
 	isChatBtnShow.value = false;
 	isChatBoxShow.value = false;
+}
+
+const chatboxStyle = computed(() => ({
+	width: `${chatBoxWidth.value}px`,
+	height: `${chatBoxHeight.value}px`,
+}));
+
+function startChatboxResize(event) {
+	isResizingChatBox.value = true;
+	resizeStart.x = event.clientX;
+	resizeStart.y = event.clientY;
+	resizeStart.width = chatBoxWidth.value;
+	resizeStart.height = chatBoxHeight.value;
+	window.addEventListener("pointermove", onChatboxResizeMove);
+	window.addEventListener("pointerup", stopChatboxResize);
+	document.body.style.userSelect = "none";
+}
+
+function onChatboxResizeMove(event) {
+	if (!isResizingChatBox.value) return;
+	const deltaX = event.clientX - resizeStart.x;
+	const deltaY = event.clientY - resizeStart.y;
+
+	const nextWidth = resizeStart.width - deltaX;
+	const nextHeight = resizeStart.height - deltaY;
+
+	chatBoxWidth.value = Math.min(
+		CHATBOX_MAX_WIDTH,
+		Math.max(CHATBOX_MIN_WIDTH, nextWidth),
+	);
+	chatBoxHeight.value = Math.min(
+		CHATBOX_MAX_HEIGHT,
+		Math.max(CHATBOX_MIN_HEIGHT, nextHeight),
+	);
+}
+
+function stopChatboxResize() {
+	isResizingChatBox.value = false;
+	window.removeEventListener("pointermove", onChatboxResizeMove);
+	window.removeEventListener("pointerup", stopChatboxResize);
+	document.body.style.userSelect = "";
 }
 
 (watch(
@@ -214,6 +267,7 @@ onBeforeUnmount(() => {
 	clearInterval(crowdingTimer);
 	clearInterval(timeTimer);
 	clearInterval(mrtTimer);
+	stopChatboxResize();
 	// contentStore.wsDisconnect();
 });
 </script>
@@ -272,10 +326,18 @@ onBeforeUnmount(() => {
       <p>下次更新：{{ formattedTimeToUpdate }}</p>
     </div>
     <div class="chatbot-container">
-      <ChatBox
+      <div
         v-if="isChatBoxShow"
         class="chatbox"
-      />
+        :style="chatboxStyle"
+      >
+        <button
+          class="chatbox-resize-handle"
+          aria-label="調整聊天框大小"
+          @pointerdown.prevent="startChatboxResize"
+        />
+        <ChatBox class="chatbox-inner" />
+      </div>
       <div
         v-if="isChatBtnShow"
         class="chatbot-btn-area"
@@ -346,9 +408,28 @@ onBeforeUnmount(() => {
 	z-index: 10;
 
 	.chatbox {
-		width: 400px;
-		height: 500px;
+		position: relative;
 		margin-bottom: 35px;
+	}
+
+	.chatbox-inner {
+		width: 100%;
+		height: 100%;
+	}
+
+	.chatbox-resize-handle {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 30px;
+		height: 30px;
+		border-radius: 20px 0 10px 0;
+		border: none;
+		background: transparent;
+		cursor: nwse-resize;
+		z-index: 11;
+		padding: 0;
+		opacity: 0;
 	}
 
 	.chatbot-btn-area {
