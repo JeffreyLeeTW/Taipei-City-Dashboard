@@ -38,7 +38,7 @@ OUTPUT_COLUMNS = [
     "year",
     "inspection_date",
     "inspection_item",
-    "vendor_name",
+    "vender_name",
     "address",
     "result",
     "inspection_status",
@@ -119,7 +119,7 @@ def clean_row(row):
         "不合格" if cleaned["result"] == "FALSE" else ""
     )
     cleaned["sampled_place"] = cleaned["sampled_place"] or (
-        f"{cleaned['vendor_name']}/{cleaned['address']}"
+        f"{cleaned['vender_name']}/{cleaned['address']}"
     )
     return cleaned
 
@@ -132,7 +132,7 @@ def aggregate_rows(rows):
             row["district"],
             row["inspection_date"],
             row["inspection_item"],
-            row["vendor_name"],
+            row["vender_name"],
             row["address"],
             row["result"],
             row["violation_detail"],
@@ -168,7 +168,7 @@ def get_taipei_data():
                     "district": source.get("district"),
                     "inspection_date": inspection_date,
                     "inspection_item": source.get("inspection_item"),
-                    "vendor_name": vender_name,
+                    "vender_name": vender_name,
                     "address": address,
                     "result": source.get("result"),
                     "violation_detail": source.get("violation_detail"),
@@ -200,7 +200,7 @@ def get_new_taipei_data():
                     "district": source.get("行政區"),
                     "inspection_date": inspection_date,
                     "inspection_item": source.get("檢驗項目"),
-                    "vendor_name": vender_name,
+                    "vender_name": vender_name,
                     "address": address,
                     "result": source.get("抽驗結果"),
                     "violation_detail": "",
