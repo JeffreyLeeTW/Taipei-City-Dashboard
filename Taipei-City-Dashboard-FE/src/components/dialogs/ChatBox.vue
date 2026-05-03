@@ -13,7 +13,7 @@ import http from "../../router/axios";
 const chatStore = useChatStore();
 const contentStore = useContentStore();
 const authStore = useAuthStore();
-const { addChatData, addQueryData, saveChatLog } = chatStore;
+const { addChatData, addQueryData, saveChatLog, generateFoodSafetyRiskSummary } = chatStore;
 const { createDashboard } = contentStore;
 const { chatData } = storeToRefs(chatStore);
 const { editDashboard } = storeToRefs(contentStore);
@@ -24,8 +24,14 @@ const chatAreaRef = ref(null);
 const isStickyOpen = ref(false);
 const dashboardCreationLoading = ref(false);
 
-const qaBtnHandler = async (text, relations) => {
-	if (text === "建立儀表板") {
+const qaBtnHandler = async (btn, relations) => {
+	const action = btn?.action || btn?.text;
+	if (action === "food_safety_summary" || action === "食安風險評估摘要") {
+		await generateFoodSafetyRiskSummary("metrotaipei", 10);
+		return;
+	}
+
+	if (action === "create_dashboard" || action === "建立儀表板") {
 		if (dashboardCreationLoading.value === true) return;
 		dashboardCreationLoading.value = true;
 		// 確認個人儀表板是否超過20個
@@ -180,7 +186,7 @@ watch(
               <button
                 v-for="btn in chat.button"
                 :key="btn.id"
-                @click="qaBtnHandler(btn.text, chat.relations)"
+                @click="qaBtnHandler(btn, chat.relations)"
               >
                 {{ btn.text }}
               </button>

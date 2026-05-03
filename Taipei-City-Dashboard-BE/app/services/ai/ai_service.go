@@ -9,6 +9,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/tmc/langchaingo/llms"
@@ -60,6 +61,7 @@ func newSession(req AIChatRequest, options ...llms.CallOption) *aiSession {
 	for _, opt := range options {
 		opt(&s.callOpts)
 	}
+	s.forcedToolName = extractForcedToolName(s.callOpts.ToolChoice)
 	s.injectInstructions()
 	return s
 }
@@ -76,6 +78,9 @@ type aiSession struct {
 	lastResp        *llms.ContentResponse
 	lastErr         error
 	startTime       time.Time
+	forcedToolName  string
+	forcedToolDone  bool
+	disableTools    bool
 }
 
 func (s *aiSession) run(ctx context.Context) (*models.AIChatLog, error) {
@@ -90,7 +95,19 @@ func (s *aiSession) run(ctx context.Context) (*models.AIChatLog, error) {
 
 		toolCalls := s.extractToolCalls()
 		if len(toolCalls) == 0 {
-			break
+			if s.forcedToolName != "" && !s.forcedToolDone {
+				toolCalls = []llms.ToolCall{{
+					ID:   fmt.Sprintf("forced_%d", time.Now().UnixNano()),
+					Type: "function",
+					FunctionCall: &llms.FunctionCall{
+						Name:      s.forcedToolName,
+						Arguments: "{}",
+					},
+				}}
+				logs.FInfo("Loop %d: Force-executing tool %s due to tool_choice", i, s.forcedToolName)
+			} else {
+				break
+			}
 		}
 
 		s.toolUsed = true
@@ -98,8 +115,43 @@ func (s *aiSession) run(ctx context.Context) (*models.AIChatLog, error) {
 		if err := s.executeTools(ctx, toolCalls); err != nil {
 			break
 		}
+
+		if s.forcedToolName != "" && s.forcedToolDone && !s.disableTools {
+			s.disableTools = true
+			s.currentMessages = append(s.currentMessages, llms.MessageContent{
+				Role: llms.ChatMessageTypeSystem,
+				Parts: []llms.ContentPart{llms.TextContent{
+					Text: "Tool result is ready. Now provide the final summary in Traditional Chinese. Do not call any tool again.",
+				}},
+			})
+		}
 	}
 	return s.finalize()
+}
+
+func extractForcedToolName(toolChoice interface{}) string {
+	if toolChoice == nil {
+		return ""
+	}
+
+	switch v := toolChoice.(type) {
+	case string:
+		s := strings.TrimSpace(v)
+		if s == "" || s == "auto" || s == "none" {
+			return ""
+		}
+		return s
+	case map[string]interface{}:
+		typ, _ := v["type"].(string)
+		if typ != "function" {
+			return ""
+		}
+		fn, _ := v["function"].(map[string]interface{})
+		name, _ := fn["name"].(string)
+		return strings.TrimSpace(name)
+	default:
+		return ""
+	}
 }
 
 func (s *aiSession) sendHeartbeat(ctx context.Context) {
@@ -115,7 +167,12 @@ func (s *aiSession) generate(ctx context.Context) error {
 	}
 
 	for i := 0; i <= maxRetry; i++ {
-		s.lastResp, s.lastErr = twccModel.GenerateContent(ctx, s.currentMessages, s.options...)
+		opts := s.options
+		if s.disableTools {
+			opts = append(opts, llms.WithTools([]llms.Tool{}), llms.WithToolChoice("none"))
+		}
+
+		s.lastResp, s.lastErr = twccModel.GenerateContent(ctx, s.currentMessages, opts...)
 		if s.lastErr == nil {
 			s.updateTokens()
 			return nil
@@ -148,7 +205,7 @@ func (s *aiSession) updateTokens() {
 
 func (s *aiSession) executeTools(ctx context.Context, toolCalls []llms.ToolCall) error {
 	choice := s.lastResp.Choices[0]
-	
+
 	// Add Assistant's intent
 	s.currentMessages = append(s.currentMessages, llms.MessageContent{
 		Role:  llms.ChatMessageTypeAI,
@@ -156,32 +213,65 @@ func (s *aiSession) executeTools(ctx context.Context, toolCalls []llms.ToolCall)
 	})
 
 	for _, tc := range toolCalls {
+		if tc.FunctionCall == nil {
+			continue
+		}
+		if s.forcedToolName != "" {
+			// In forced tool mode, execute at most once and only that exact tool.
+			if tc.FunctionCall.Name != s.forcedToolName || s.forcedToolDone {
+				continue
+			}
+		}
+
 		s.executedTools = append(s.executedTools, tc.FunctionCall.Name)
 		result, err := tools.Execute(ctx, tc.FunctionCall.Name, tc.FunctionCall.Arguments)
 		if err != nil {
 			result = fmt.Sprintf("Error: %v. Please verify arguments.", err)
 			logs.FError("Tool Error: %v", err)
 		}
+		result = formatToolResultForLLM(tc.FunctionCall.Name, result)
+		toolCallID := normalizeToolCallID(tc.ID)
 
 		s.currentMessages = append(s.currentMessages, llms.MessageContent{
 			Role: llms.ChatMessageTypeTool,
 			Parts: []llms.ContentPart{llms.ToolCallResponse{
-				ToolCallID: tc.ID, Name: tc.FunctionCall.Name, Content: result,
+				ToolCallID: toolCallID, Name: tc.FunctionCall.Name, Content: result,
 			}},
 		})
+
+		if s.forcedToolName != "" && tc.FunctionCall.Name == s.forcedToolName {
+			s.forcedToolDone = true
+		}
 	}
 	return nil
 }
 
+func normalizeToolCallID(id string) string {
+	v := strings.TrimSpace(strings.ToLower(id))
+	if v == "" || v == "null" {
+		return fmt.Sprintf("call_%d", time.Now().UnixNano())
+	}
+	return id
+}
+
 func (s *aiSession) injectInstructions() {
 	toolNames := ""
+	hasFoodSafetyTool := false
 	for i, t := range s.callOpts.Tools {
-		if i > 0 { toolNames += ", " }
+		if i > 0 {
+			toolNames += ", "
+		}
 		toolNames += t.Function.Name
+		if t.Function != nil && t.Function.Name == "get_food_safety_risk_rank" {
+			hasFoodSafetyTool = true
+		}
 	}
 
-	instruction := fmt.Sprintf("\nSystem Instruction:\n1. Use ONLY: [%s].\n2. NEVER nest tool calls \n3. Arguments MUST be literal values (strings, integers, etc.), never function calls \n4. For dependent tasks, call tools sequentially in separate turns.\n5. If stuck, respond with text.", toolNames)
-	
+	instruction := fmt.Sprintf("\nSystem Instruction:\n1. Use ONLY: [%s].\n2. NEVER nest tool calls \n3. Arguments MUST be literal values (strings, integers, etc.), never function calls \n4. For dependent tasks, call tools sequentially in separate turns.\n5. If stuck, respond with text.\n6. Always provide a concise summary first, not a raw list dump.\n7. Do NOT output raw JSON, SQL, or full dashboard component catalog unless the user explicitly asks for raw data.\n8. For health-related questions, prioritize practical explanation and actionable advice.", toolNames)
+	if hasFoodSafetyTool {
+		instruction += "\n9. For food safety and health risk questions, call get_food_safety_risk_rank before giving final analysis."
+	}
+
 	s.currentMessages = make([]llms.MessageContent, 0)
 	merged := false
 	for _, m := range s.req.Messages {
@@ -192,13 +282,20 @@ func (s *aiSession) injectInstructions() {
 			s.currentMessages = append(s.currentMessages, m)
 		}
 	}
-	
+
 	if !merged {
 		s.currentMessages = append([]llms.MessageContent{{
-			Role: llms.ChatMessageTypeSystem,
-			Parts: []llms.ContentPart{llms.TextContent{Text: "Instruction: Use tools: [" + toolNames + "]."}},
+			Role:  llms.ChatMessageTypeSystem,
+			Parts: []llms.ContentPart{llms.TextContent{Text: instruction}},
 		}}, s.currentMessages...)
 	}
+}
+
+func formatToolResultForLLM(toolName string, raw string) string {
+	if toolName == "get_food_safety_risk_rank" {
+		return "TOOL_RESULT:\n" + raw + "\n\nRESPONSE_RULE:\n請先摘要重點，再解釋風險意義與建議；除非使用者要求，不要逐項列完整清單。"
+	}
+	return raw
 }
 
 func (s *aiSession) finalize() (*models.AIChatLog, error) {
@@ -238,7 +335,9 @@ func (s *aiSession) finalize() (*models.AIChatLog, error) {
 
 func toolsToParts(calls []llms.ToolCall) []llms.ContentPart {
 	parts := make([]llms.ContentPart, len(calls))
-	for i, c := range calls { parts[i] = c }
+	for i, c := range calls {
+		parts[i] = c
+	}
 	return parts
 }
 
@@ -256,15 +355,20 @@ func mergeSystemMsg(m llms.MessageContent, instruction string) llms.MessageConte
 
 func extractText(m llms.MessageContent) string {
 	for _, p := range m.Parts {
-		if t, ok := p.(llms.TextContent); ok { return t.Text }
+		if t, ok := p.(llms.TextContent); ok {
+			return t.Text
+		}
 	}
 	return ""
 }
 
 func parseUsageInt(val interface{}) int {
 	switch v := val.(type) {
-	case int: return v
-	case float64: return int(v)
-	default: return 0
+	case int:
+		return v
+	case float64:
+		return int(v)
+	default:
+		return 0
 	}
 }

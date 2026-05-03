@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -17,6 +18,7 @@ func init() {
 	// Register demo tools
 	Register("get_current_time", GetCurrentTime)
 	Register("get_population_summary", GetPopulationSummary)
+	Register("get_food_safety_risk_rank", GetFoodSafetyRiskRank)
 }
 
 // Register adds a tool to the registry
@@ -56,11 +58,11 @@ func GetPopulationSummary(ctx context.Context, args string) (string, error) {
 
 	// Define result structure based on database schema
 	var result struct {
-		Year      int `gorm:"column:year"`
-		Young     int `gorm:"column:young_population"`
-		Working   int `gorm:"column:working_age_population"`
-		Elderly   int `gorm:"column:elderly_population"`
-		DataTime  time.Time `gorm:"column:data_time"`
+		Year     int       `gorm:"column:year"`
+		Young    int       `gorm:"column:young_population"`
+		Working  int       `gorm:"column:working_age_population"`
+		Elderly  int       `gorm:"column:elderly_population"`
+		DataTime time.Time `gorm:"column:data_time"`
 	}
 
 	// Query the dashboard database
@@ -94,5 +96,8 @@ func GetCurrentTime(ctx context.Context, args string) (string, error) {
 
 // Helper to parse JSON arguments if needed in future tools
 func parseArgs(args string, v interface{}) error {
+	if strings.TrimSpace(args) == "" {
+		args = "{}"
+	}
 	return json.Unmarshal([]byte(args), v)
 }

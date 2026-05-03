@@ -37,6 +37,71 @@ export const useChatStore = defineStore('chat', () => {
     	chatData.value.push({ id: chatData.value.length + 1, isDefault: false, ...newChatData });
   	};
 
+	const generateFoodSafetyRiskSummary = async (city = "metrotaipei", topK = 10) => {
+		chatData.value.push({
+			id: chatData.value.length + 1,
+			role: "user",
+			isDefault: false,
+			content: `請幫我做${city === "taipei" ? "臺北市" : "雙北"}食安風險評估摘要`,
+		});
+
+		try {
+			const response = await http.post("/ai/chat/twai", {
+				stream: false,
+				messages: [
+					{
+						role: "system",
+						content: "你是食安分析助理。你必須先調用工具，再用繁體中文提供重點摘要與建議。不要回傳原始 JSON。",
+					},
+					{
+						role: "user",
+						content: `請用食安風險工具做評估，參數 city=${city}, top_k=${topK}。請回覆：1) 三點重點摘要 2) 高風險前五名行政區 3) 建議行動。`,
+					},
+				],
+				tools: [
+					{
+						type: "function",
+						function: {
+							name: "get_food_safety_risk_rank",
+							description: "查詢食安風險評估指數（對應 food_safety_risk_rank_map）",
+							parameters: {
+								type: "object",
+								properties: {
+									city: { type: "string", enum: ["taipei", "metrotaipei"] },
+									top_k: { type: "integer" },
+									district: { type: "string" },
+								},
+							},
+						},
+					},
+				],
+				tool_choice: {
+					type: "function",
+					function: { name: "get_food_safety_risk_rank" },
+				},
+			});
+
+			const content = response?.data?.data?.content || "已完成食安風險評估，但暫時無法顯示摘要。";
+			chatData.value.push({
+				id: chatData.value.length + 1,
+				role: "bot",
+				isDefault: false,
+				content,
+			});
+			saveChatLog("食安風險評估摘要", content);
+		} catch (error) {
+			console.error("FoodSafetySummaryError:", error);
+			const failMsg = "食安風險評估暫時失敗，請稍後再試。";
+			chatData.value.push({
+				id: chatData.value.length + 1,
+				role: "bot",
+				isDefault: false,
+				content: failMsg,
+			});
+			saveChatLog("食安風險評估摘要", failMsg);
+		}
+	};
+
   	const addQueryData = async (newChatData) => {
 
     	chatData.value.push({ id: chatData.value.length + 1, isDefault: false, ...newChatData });
@@ -91,10 +156,10 @@ export const useChatStore = defineStore('chat', () => {
 
 		if (recommendComponents.value && recommendComponents.value?.length > 0) {
 			topK = [...recommendComponents.value].sort((a, b) => b.score - a.score);
-			chatData.value.push({ id: chatData.value.length + 1, role: 'bot', isDefault: false, button: [{ id:1, text:'建立儀表板' }], content: `您好 😊 \n 以下是根據您的問題，自動為您推薦的「組件清單」。您可以將這些組件整批加入「個人儀表板」，方便日後快速查看與使用。\n`, relations: topK });
+			chatData.value.push({ id: chatData.value.length + 1, role: 'bot', isDefault: false, button: [{ id:1, text:'建立儀表板', action: 'create_dashboard' }, { id:2, text:'食安風險評估摘要', action: 'food_safety_summary' }], content: `您好 😊 \n 以下是根據您的問題，自動為您推薦的「組件清單」。您可以將這些組件整批加入「個人儀表板」，方便日後快速查看與使用。\n`, relations: topK });
 			chatData.value.push({ id: chatData.value.length + 1, role: 'bot', isDefault: false, content: `若您有任何新的查詢或想深入探索的內容，都可以隨時在對話框告訴我～\n 我很樂意再協助您 💬✨` });
 		} else {
-			chatData.value.push({ id: chatData.value.length + 1, role: 'bot', isDefault: false, content: `很抱歉，您提供的描述沒有相似組件，請繼續提問 ! ` });
+			chatData.value.push({ id: chatData.value.length + 1, role: 'bot', isDefault: false, button: [{ id:2, text:'食安風險評估摘要', action: 'food_safety_summary' }], content: `很抱歉，您提供的描述沒有相似組件，請繼續提問 ! ` });
 		}
 
 		// 分析結束後紀錄問答log
@@ -124,5 +189,5 @@ export const useChatStore = defineStore('chat', () => {
       	}
 	};
 
-	return { chatData, addChatData, addQueryData, saveChatLog }
+	return { chatData, addChatData, addQueryData, saveChatLog, generateFoodSafetyRiskSummary }
 })

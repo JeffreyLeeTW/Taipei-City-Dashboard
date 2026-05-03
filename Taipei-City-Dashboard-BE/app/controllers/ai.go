@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"TaipeiCityDashboardBE/app/services/ai"
+	"TaipeiCityDashboardBE/app/services/ai/tools"
 	"TaipeiCityDashboardBE/app/util"
 	"context"
 	"fmt"
@@ -29,13 +30,13 @@ type AIChatInput struct {
 		} `json:"tool_calls,omitempty"`
 		ToolCallID string `json:"tool_call_id,omitempty"`
 	} `json:"messages" binding:"required,gt=0"`
-	MaxNewTokens     *int      `json:"max_new_tokens" binding:"omitempty,gt=0"`
-	Temperature      *float64  `json:"temperature" binding:"omitempty,gt=0"`
-	TopP             *float64  `json:"top_p" binding:"omitempty,gt=0,lte=1"`
-	TopK             *int      `json:"top_k" binding:"omitempty,gte=1,lte=100"`
-	FrequencePenalty *float64  `json:"frequence_penalty" binding:"omitempty,gt=0"`
-	StopSequences    []string  `json:"stop_sequences" binding:"omitempty,max=4"`
-	Seed             *int      `json:"seed" binding:"omitempty,gte=0"`
+	MaxNewTokens     *int     `json:"max_new_tokens" binding:"omitempty,gt=0"`
+	Temperature      *float64 `json:"temperature" binding:"omitempty,gt=0"`
+	TopP             *float64 `json:"top_p" binding:"omitempty,gt=0,lte=1"`
+	TopK             *int     `json:"top_k" binding:"omitempty,gte=1,lte=100"`
+	FrequencePenalty *float64 `json:"frequence_penalty" binding:"omitempty,gt=0"`
+	StopSequences    []string `json:"stop_sequences" binding:"omitempty,max=4"`
+	Seed             *int     `json:"seed" binding:"omitempty,gte=0"`
 	Tools            []struct {
 		Type     string `json:"type" binding:"required,eq=function"`
 		Function struct {
@@ -52,9 +53,9 @@ func ChatWithTWCC(c *gin.Context) {
 	var input AIChatInput
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"status": "error",
+			"status":     "error",
 			"error_code": "INVALID_REQUEST",
-			"message": err.Error(),
+			"message":    err.Error(),
 		})
 		return
 	}
@@ -102,9 +103,9 @@ func ChatWithTWCC(c *gin.Context) {
 		if err != nil {
 			if !c.Writer.Written() {
 				c.JSON(http.StatusInternalServerError, gin.H{
-					"status": "error",
+					"status":     "error",
 					"error_code": "AI_SERVICE_STREAM_ERROR",
-					"message": err.Error(),
+					"message":    err.Error(),
 				})
 			}
 		}
@@ -115,9 +116,9 @@ func ChatWithTWCC(c *gin.Context) {
 	logEntry, err := ai.ChatWithTWCC(c.Request.Context(), req, options...)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"status": "error",
+			"status":     "error",
 			"error_code": "AI_SERVICE_ERROR",
-			"message": err.Error(),
+			"message":    err.Error(),
 		})
 		return
 	}
@@ -125,17 +126,17 @@ func ChatWithTWCC(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"status": "success",
 		"data": gin.H{
-			"session":     logEntry.SessionID,
-			"content":     logEntry.Answer,
+			"session": logEntry.SessionID,
+			"content": logEntry.Answer,
 			"usage": gin.H{
 				"input_tokens":  logEntry.InputTokens,
 				"output_tokens": logEntry.OutputTokens,
 				"total_tokens":  logEntry.TotalTokens,
 			},
-			"tool_used":   logEntry.ToolUsed,
-			"latency_ms":  logEntry.LatencyMS,
-			"model":       logEntry.Model,
-			"provider":    logEntry.Provider,
+			"tool_used":  logEntry.ToolUsed,
+			"latency_ms": logEntry.LatencyMS,
+			"model":      logEntry.Model,
+			"provider":   logEntry.Provider,
 		},
 	})
 }
@@ -215,22 +216,41 @@ func (input *AIChatInput) ToCallOptions() []llms.CallOption {
 		params["seed"] = *input.Seed
 	}
 
-	// Map Tools
-	if len(input.Tools) > 0 {
-		lt := make([]llms.Tool, 0)
-		for _, t := range input.Tools {
-			lt = append(lt, llms.Tool{
-				Type: t.Type,
-				Function: &llms.FunctionDefinition{
-					Name:        t.Function.Name,
-					Description: t.Function.Description,
-					Parameters:  t.Function.Parameters,
-				},
-			})
+	// Map Tools: merge caller-provided tools with default backend tools so tool calling works even if client omitted tools.
+	lt := make([]llms.Tool, 0)
+	toolByName := make(map[string]llms.Tool)
+
+	for _, t := range tools.DefaultLLMTools() {
+		if t.Function == nil {
+			continue
 		}
+		toolByName[t.Function.Name] = t
+	}
+
+	for _, t := range input.Tools {
+		if t.Function.Name == "" {
+			continue
+		}
+		toolByName[t.Function.Name] = llms.Tool{
+			Type: t.Type,
+			Function: &llms.FunctionDefinition{
+				Name:        t.Function.Name,
+				Description: t.Function.Description,
+				Parameters:  t.Function.Parameters,
+			},
+		}
+	}
+
+	for _, t := range toolByName {
+		lt = append(lt, t)
+	}
+
+	if len(lt) > 0 {
 		options = append(options, llms.WithTools(lt))
 		if input.ToolChoice != nil {
 			options = append(options, llms.WithToolChoice(input.ToolChoice))
+		} else {
+			options = append(options, llms.WithToolChoice("auto"))
 		}
 	}
 
@@ -240,4 +260,3 @@ func (input *AIChatInput) ToCallOptions() []llms.CallOption {
 
 	return options
 }
-
